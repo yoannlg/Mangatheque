@@ -1,0 +1,61 @@
+body{
+	background: url(images/loupe.png);
+}
+
+
+input:-moz-placeholder, textarea:-moz-placeholder {
+    color: white;
+}
+ 
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+    color: white;
+}
+
+
+
+
+
+header{
+	display: flex;
+	justify-content: center;
+
+}
+#recherche .loupe{
+	margin-left: -20px;
+}
+
+#recherche{
+	display: flex;
+	padding: 1.6rem;
+}
+.manga-search{
+	display: flex;
+	background-color: #429398;   /* Couleur de fond */
+	border-style: solid;   /* Style de la bordure */
+	border-width: 1px;   /* Epaisseur de la bordure */
+	border-color: #ffffff;   /* Couleur de la bordure */
+	border:none;
+
+	color: #fff;   /* Couleur du texte du champ de saisie */
+	letter-spacing: 1px;   /* Espacement des caractères du texte du champ de saisie */
+	font-family: 'Lora', serif;   /* Police du texte du champ de saisie */
+	font-style: italic;   /* Style de la police du texte du champ de saisie : normal = normal ; italic = italique */
+	font-weight: normal;   /* Graisse du texte du champ de saisie : normal = normal ; bold = gras */
+	font-size: 1rem;   /* Taille de la police du texte du champ de saisie */
+}
+.loupe{
+	background: url("../images/loupe.png")no-repeat center;
+	background-size: contain;
+	border: none;
+	margin-right: 
+
+}
+
+
+
+
+
+
+h1{
+	color: red;
+}
