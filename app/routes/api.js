@@ -1,9 +1,14 @@
 var bodyParser = require('body-parser');
 var User       = require('../models/user');
+var Serie      = require('../models/series');
 var jwt        = require('jsonwebtoken');
 var config     = require('../../config');
 
 var superSecret = config.secret || 'admin';
+
+
+var apiExterne = "http://www.mangaeden.com/api/list/0/";
+
 
 module.exports = function(app, express) {
 
@@ -21,6 +26,120 @@ module.exports = function(app, express) {
 	});
 
 
+
+
+
+apiRouter.route('/authenticate')
+	.post(function(req, res){
+		// find the user
+		console.log("Moi même je vaut : ",req.body.name);
+	  User.findOne({
+	    name: req.body.name
+	  }).select('name password').exec(function(err, user) {
+
+	    if (err) throw err;
+
+	    // no user with that username was found
+	    if (!user) {
+	      res.json({ 
+	      	success: false, 
+	      	message: 'Authentication failed. User not found.' 
+	    	});
+	    } else if (user) {
+
+	      // check if password matches
+	      var validPassword = user.comparePassword(req.body.password);
+	      if (!validPassword) {
+	        res.json({ 
+	        	success: false, 
+	        	message: 'Authentication failed. Wrong password.' 
+	      	});
+	      } else {
+
+	        // if user is found and password is right
+	        // create a token
+	        var token = jwt.sign({
+	        	name: user.name,
+	        	username: user.username
+	        }, superSecret, {
+	          expiresIn: '7d' // expires in 24 hours
+	        });
+
+	        // return the information including token as JSON
+	        res.json({
+	          success: true,
+	          message: 'Enjoy your token!',
+	          token: token
+	        });
+	      }   
+
+	    }
+
+	  });
+	});
+
+
+
+
+
+
+
+
+// route middleware to verify a token
+	apiRouter.use(function(req, res, next) {
+		// do logging
+		console.log('Somebody just came to our app!');
+
+	  // check header or url parameters or post parameters for token
+	  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+	  // decode token
+	  if (token) {
+
+	    // verifies secret and checks exp
+	    jwt.verify(token, superSecret, function(err, decoded) {      
+
+	      if (err) {
+	        res.status(403).send({ 
+	        	success: false, 
+	        	message: 'Failed to authenticate token.' 
+	    	});  	   
+	      } else { 
+	        // if everything is good, save to request for use in other routes
+	        req.decoded = decoded;
+	            
+	        next(); // make sure we go to the next routes and don't stop here
+	      }
+	    });
+
+	  } else {
+
+	    // if there is no token
+	    // return an HTTP response of 403 (access forbidden) and an error message
+   	 	res.status(403).send({ 
+   	 		success: false, 
+   	 		message: 'No token provided.' 
+   	 	});
+	    
+	  }
+	});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // on routes that end in /users
 // ----------------------------------------------------
 apiRouter.route('/users')
@@ -31,7 +150,8 @@ apiRouter.route('/users')
 		var user      = new User();      // create a new instance of the User model
 		user.name     = req.body.name;  // set the user name (comes from the request)
 		user.password = req.body.password;
-        // save the bear and check for errors
+
+        // save the user and check for errors
         user.save(function(err) {
             if (err){
             	if (err.code == 11000) 
@@ -59,7 +179,7 @@ apiRouter.route('/users/:user_id')
 		User.findById(req.params.user_id, function(err, user) {
             if (err)
                 res.send(err);
-            res.json(user);
+            	res.json(user);
         });
 	})
 	.put(function(req, res){
@@ -86,6 +206,46 @@ apiRouter.route('/users/:user_id')
 			res.json({message: 'Successfully deleted'});
 		});
 	});
+
+
+
+
+
+
+
+
+// on routes that end in serie
+// ----------------------------------------------------
+apiRouter.route('/users/:user_id/series')
+	.post(function(req,res){
+		var serie      = new Serie();
+
+		serie._userId  = req.params.user_id;
+		serie.titre    = req.body.titre;
+		serie.nbrTotal = req.body.nbrTotal;
+		//serie.nbrAqui  = req.body.nbrAqui;
+		serie.auteur   = req.body.auteur;
+
+		serie.save(function(err) {
+			if (err) {
+				if (err.code == 11000)
+					return res.json({success: false, message: 'A serie whith same name already exists.'})
+				else
+					return res.send("t'es un putain de boulet mec!!",err);
+			}
+			res.json({message: 'Manga added in your favorite'});
+		});
+	})
+// get all serie (accessed at GET http://localhost:5100/api/users/id/series)
+    .get(function(req, res) {
+        Serie.find({_userId: req.params.user_id},function(err, series) {
+            if (err)
+                res.send(err);
+
+            res.json(series);
+        });
+    });
+
 
 return apiRouter;
 };

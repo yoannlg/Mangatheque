@@ -16,18 +16,18 @@ app.use(bodyParser.json());
 
 // configure our app to handle CORS requests
 
-//  app.use(function(req, res, next) {
-//  	res.setHeader('Access-Control-Allow-Origin', '*');
-// 	res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-// 	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
-// 	next();
-// });
+ app.use(function(req, res, next) {
+ 	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+	next();
+ });
 
 // log all requests to the console 
 app.use(morgan('dev'));
 
-// connect to our database (hosted on modulus.io)
-mongoose.connect('mongodb://localhost/mangatheque');//not contact list app!!!!
+// connect to our database
+mongoose.connect(config.database);
 
 // set static files location  
 //Static files are images, JavaScript library, CSS files etc. You can specify by using.
@@ -54,9 +54,9 @@ app.use('/api', apiRoutes);
 // SEND USERS TO FRONTEND ------------
 // has to be registered after API ROUTES
 
-// app.get('*', function(req, res) {
-// res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
-// });
+app.get('*', function(req, res) {
+res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
+ });
 
 // START THE SERVER
 // ====================================
