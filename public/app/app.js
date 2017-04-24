@@ -1,44 +1,17 @@
-angular.module('app.routes', ['ngRoute'])
+//------------------------------------------
+// WARNING:::::::::::::::::::::::::::::::::::
+// COPIER MAIS PAS AJUSTER AU PROJET MANGATHEQUE!!!!!
+//------------------------------------------
 
-.config(function($routeProvider, $locationProvider) {
+angular.module('userApp', ['ngAnimate', 'app.routes', 'authService', 'mainCtrl', 'userCtrl', 'userService'])
 
-	$routeProvider
+// application configuration to integrate token into requests
+.config(function($httpProvider) {
 
-		// route for the home page
-		.when('/', {
-			templateUrl : 'app/views/pages/home.html'
-		})
-		
-		// login page
-		.when('/login', {
-			templateUrl : 'app/views/pages/login.html',
-   			controller  : 'mainController',
-    		controllerAs: 'login'
-		})
-		
-		// show all users
-		.when('/users', {
-			templateUrl : 'app/views/pages/users/all.html',
-			controller  : 'userController',
-			controllerAs: 'user'
-		})
-
-		// form to create a new user
-		// same view as edit page
-		.when('/users/create', {
-			templateUrl : 'app/views/pages/users/single.html',
-			controller  : 'userCreateController',
-			controllerAs: 'user'
-		})
-
-		// page to edit a user
-		.when('/users/:user_id', {
-			templateUrl : 'app/views/pages/users/single.html',
-			controller  : 'userEditController',
-			controllerAs: 'user'
-		});
-
-	$locationProvider.html5Mode(true);
+	// attach our auth interceptor to the http requests
+	$httpProvider.interceptors.push('AuthInterceptor');
 
 });
 
+
+//angular.module('mangatheque', ['restangular'])

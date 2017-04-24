@@ -8,16 +8,20 @@
 	<base href="/">
 
 	<!-- CSS  -->
-	<!-- load bootstrap from CDN and custom CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css">
-	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="../assets/css/style.css">
+
+	<!-- JS -->
+	<!-- load angular and angular-route via CDN -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.js"></script>
 
 </head>
-<body>
-	<header>
-		<h1>Mangathèque</h1>
-	</header>
+<body ng-app="mangatheque" ng-controller="mainController as main">
+	
+	<div class="container">
+		<div ng-view></div>
+	</div>
 
 </body>
 </html>

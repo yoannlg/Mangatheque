@@ -1,6 +1,7 @@
+// ------------------------------------------
+// WARNING:::::::::::::::::::::::::::::::::::
 // ROUTE A REVOIR JUSTE COPIER PAS AJUSTER!
-
-
+// ------------------------------------------
 
 angular.module('app.routes', ['ngRoute'])
 
@@ -10,39 +11,38 @@ angular.module('app.routes', ['ngRoute'])
 
 		// route for the home page
 		.when('/', {
-			templateUrl : 'app/views/pages/home.html'
+			templateUrl : 'app/views/pages/login.html'
+			controller: "mainController", 
+			controlelrAs: 'login'
 		})
 		
-		// login page
-		.when('/login', {
-			templateUrl : 'app/views/pages/login.html',
+		// register page
+		.when('/inscription', {
+			templateUrl : 'app/views/pages/register.html',
 			controller  : 'mainController',
-			controllerAs: 'login'
-		})
-		
-		// show all users
-		.when('/users', {
-			templateUrl : 'app/views/pages/users/all.html',
-			controller  : 'userController',
-			controllerAs: 'user'
-		})
-
-		// form to create a new user
-		// same view as edit page
-		.when('/users/create', {
-			templateUrl : 'app/views/pages/users/single.html',
-			controller  : 'userCreateController',
-			controllerAs: 'user'
-		})
-
-		// page to edit a user
-		.when('/users/:user_id', {
-			templateUrl : 'app/views/pages/users/single.html',
-			controller  : 'userEditController',
-			controllerAs: 'user'
+			controllerAs: 'register'
 		});
 
 	$locationProvider.html5Mode(true);
 
 });
+
+
+
+//angular.module('app.routes', ['ngRoute' 'restangular'])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
