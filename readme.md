@@ -1,1 +1,4 @@
-**Projet Mangathèque**
+#Projet Mangathèque
+**author : **
+* Jérémie
+* Yoann
