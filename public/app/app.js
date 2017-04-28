@@ -3,13 +3,13 @@
 // COPIER MAIS PAS AJUSTER AU PROJET MANGATHEQUE!!!!!
 //------------------------------------------
 
-angular.module('userApp', ['ngAnimate', 'app.routes', 'authService'])
+angular.module('app', ['ngAnimate', 'app.routes'])
 
 // application configuration to integrate token into requests
 .config(function($httpProvider) {
 
 	// attach our auth interceptor to the http requests
-	$httpProvider.interceptors.push('AuthInterceptor');
+	//$httpProvider.interceptors.push('AuthInterceptor');
 
 });
 

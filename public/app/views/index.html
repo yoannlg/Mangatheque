@@ -5,7 +5,7 @@
 	<title>Mangathèque de Yoann</title>
 
 <!-- FOR ANGULAR ROUTING -->
-	<!-- <base href="/"> -->
+	<base href="/">
 
 	<!-- CSS  -->
 	<link rel="stylesheet" href="../../assets/css/style.css">
@@ -16,12 +16,14 @@
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.js"></script>
-
+		<!-- main Angular app files -->
+	<script src="app/app.routes.js"></script>
+	<script src="app/app.js"></script>
 </head>
-<body ng-app="mangatheque">
+<body ng-app="app">
 	
-	<div class="container">
-		<div ng-view></div>
+	<div class="container" ng-view>
+		
 	</div>
 
 </body>

@@ -29,26 +29,24 @@ app.use(morgan('dev'));
 // connect to our database
 mongoose.connect(config.database);
 
-// set static files location  
-//Static files are images, JavaScript library, CSS files etc. You can specify by using.
+// set static files location
 // used for requests that our frontend will make
+app.use(express.static(__dirname + '/public'));
 
 // ROUTES FOR OUR API =================
 // ====================================
 
-
 // API ROUTES ------------------------
-// REGISTER OUR ROUTES -------------------------------
-// all of our routes will be prefixed with /api
 var apiRoutes = require('./app/routes/api')(app, express);
 app.use('/api', apiRoutes);
 
 // MAIN CATCHALL ROUTE --------------- 
 // SEND USERS TO FRONTEND ------------
 // has to be registered after API ROUTES
+app.get('*', function(req, res) {
+	res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
+});
 
-app.use(express.static (__dirname + '/public/app/views'));
- 
 // START THE SERVER
 // ====================================
 app.listen(config.port);

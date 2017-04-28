@@ -6,7 +6,7 @@
 angular.module('app.routes', ['ngRoute'])
 
 .config(function($routeProvider, $locationProvider) {
-
+	$locationProvider.html5Mode(true);
 	$routeProvider
 
 		// route for the home page
@@ -21,9 +21,8 @@ angular.module('app.routes', ['ngRoute'])
 			templateUrl : 'app/views/pages/register.html',
 			//controller  : 'mainController',
 			//controllerAs: 'register'
-		});
-
-	$locationProvider.html5Mode(true);
+		})
+		.otherwise({redirectTo: '/'});
 
 });
 
