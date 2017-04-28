@@ -12,15 +12,15 @@ angular.module('app.routes', ['ngRoute'])
 		// route for the home page
 		.when('/', {
 			templateUrl : 'app/views/pages/login.html'
-			controller: "mainController", 
-			controlelrAs: 'login'
+			//controller: "", 
+			//controlelrAs: ''
 		})
 		
 		// register page
 		.when('/inscription', {
 			templateUrl : 'app/views/pages/register.html',
-			controller  : 'mainController',
-			controllerAs: 'register'
+			//controller  : 'mainController',
+			//controllerAs: 'register'
 		});
 
 	$locationProvider.html5Mode(true);

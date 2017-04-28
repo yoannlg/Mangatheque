@@ -3,7 +3,7 @@
 // COPIER MAIS PAS AJUSTER AU PROJET MANGATHEQUE!!!!!
 //------------------------------------------
 
-angular.module('userApp', ['ngAnimate', 'app.routes', 'authService', 'mainCtrl', 'userCtrl', 'userService'])
+angular.module('userApp', ['ngAnimate', 'app.routes', 'authService'])
 
 // application configuration to integrate token into requests
 .config(function($httpProvider) {
