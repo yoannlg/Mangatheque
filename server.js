@@ -32,16 +32,9 @@ mongoose.connect(config.database);
 // set static files location  
 //Static files are images, JavaScript library, CSS files etc. You can specify by using.
 // used for requests that our frontend will make
-app.use(express.static(__dirname + '/public'));
 
 // ROUTES FOR OUR API =================
 // ====================================
-
-
-
-app.get('/', function(req, res){
-	res.send("Hello world ! From server.js")
-});
 
 
 // API ROUTES ------------------------
@@ -54,10 +47,8 @@ app.use('/api', apiRoutes);
 // SEND USERS TO FRONTEND ------------
 // has to be registered after API ROUTES
 
-app.get('*', function(req, res) {
-res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
- });
-
+app.use(express.static (__dirname + '/public/app/views'));
+ 
 // START THE SERVER
 // ====================================
 app.listen(config.port);
