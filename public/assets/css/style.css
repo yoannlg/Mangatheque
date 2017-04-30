@@ -1,3 +1,49 @@
+
 h1{
+	text-align: center;
+}
+.mainContainer{
 	
+}
+.containerLogin{
+	width: 50%;
+	background-color: cadetblue;
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+}
+.containerLogin p{
+	text-align: center
+}
+
+.descriptionLogin{
+
+}
+
+.descriptionLogin p{
+	text-align: center;
+}
+
+.formLogin{
+	justify-content: center;
+}
+
+.registerLogin{
+	text-align: center;
+}
+
+.btn-validate{
+	width: 150px;
+	margin: 15px auto;
+	background-color: blue;
+	color: white;
+}
+
+.flex-center{
+	display: flex;
+	justify-content: center;
+	margin: 10px;
+}
+.flex-center i{
+	margin: 0 10px;
 }
