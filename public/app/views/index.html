@@ -8,8 +8,11 @@
 	<base href="/">
 
 	<!-- CSS  -->
+	<link rel="stylesheet" href="../../assets/css/normalize.css">
 	<link rel="stylesheet" href="../../assets/css/style.css">
-	<link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+	<link rel="icon" type="image/x-icon" href="../../assets/images/favicon.ico">
+	<link rel="stylesheet" href="../../assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+
 
 	<!-- JS -->
 	<!-- load angular and angular-route via CDN -->
@@ -20,11 +23,20 @@
 	<script src="app/app.routes.js"></script>
 	<script src="app/app.js"></script>
 </head>
-<body ng-app="app">
-	
-	<div class="container" ng-view>
-		
-	</div>
 
+<body ng-app="app">
+	<div class="page flex-center flex-column">
+		<h1>Mangathèque</h1>
+		<div class="container" ng-view>
+			
+		</div>
+	</div>
 </body>
 </html>
+
+
+
+
+
+
+

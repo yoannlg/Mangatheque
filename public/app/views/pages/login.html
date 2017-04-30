@@ -1,17 +1,25 @@
 <!-- quand on se trouve sur la login page -->
-<h1>Mangathèque</h1>
-<div class="containerLogin">
-	<div class="description">
-		<p>Bienvenue sur la mangathèque, géré facilement votre collection de manga!</p>
-		<p>Ajouté, édité ou suprimé en quelques click.</p>		
+<div class="mainContainer">
+	<div class="containerLogin flex-center flex-column">
+		<div class="descriptionLogin">
+			<p>Bienvenue sur la mangathèque, gérez facilement votre collection de manga! <br>
+			Ajoutez, éditez ou supprimez en quelques click.</p>
+				
+		</div>
+		<div class="formLogin">
+			<form action="#">
+				<div class="flex-center">
+					<i class="fa fa-user fa-2x" aria-hidden="true"></i>
+					<input type="text" name="name" placeholder="Votre pseudo">
+				</div>
+				<div class="flex-center">
+					<i class="fa fa-lock fa-2x" aria-hidden="true"></i>
+					<input type="password" name="psw" placeholder="Votre mot de passe">
+				</div>
+			</form>
+		</div>
+		<button class="btn btn-medium">Se connecter</button>
 	</div>
-	<div class="formLogin">
-		<form action="#">
-			<img src="#" alt="icon pseudo">
-			<input type="text" name="name"><br>
-			<img src="#" alt="icon psw">
-			<input type="password" name="psw">
-		</form>
-	</div>
-	<p>Vous n'avez pas encore de compte? <strong><a href="#">Crée un compte</a></strong></p>
+
+<p class="registerLogin"><a href="#">Créer un compte</a></p>
 </div>
