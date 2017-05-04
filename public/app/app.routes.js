@@ -22,13 +22,16 @@ angular.module('app.routes', ['ngRoute'])
 			//controller  : 'mainController',
 			//controllerAs: 'register'
 		})
-		.otherwise({redirectTo: '/'});
+		.otherwise({redirectTo: '/'})
+		.when('/signup', {
+			templateUrl: 'app/views/pages/signup/signup.html',
+			controller: 'signupController',
+			controllerAs: 'signupCtrl'
+		});
 
 });
 
 
 
 //angular.module('app.routes', ['ngRoute' 'restangular'])
-
-
 
