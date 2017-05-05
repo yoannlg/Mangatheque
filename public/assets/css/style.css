@@ -25,7 +25,7 @@ a{
 	top: 0;
 }
 	/*RESPONSIVE*/
-@media (max-width: 767px) {
+@media (max-width: 667px) {
 	.page {
 	background-size: cover;
 	}
@@ -55,8 +55,17 @@ flex-direction: column;
 	background-color: cadetblue;
 	margin: auto;
 }
+@media screen and (max-width: 667px) {
+	.containerLogin {
+	width: 300px;
+	}
+}
 .containerLogin p{
-	text-align: center
+	text-align: center;
+	padding: 0 10px;
+}
+.containerLogin button{
+	margin-bottom: 10px;
 }
 
 .descriptionLogin p{
@@ -71,6 +80,7 @@ flex-direction: column;
 .registerLogin{
 	text-align: center;
 }
+
 /******************/
 
 /******************/
@@ -116,6 +126,12 @@ flex-direction: column;
     text-decoration: none;
 }
 /******************/
+
+.icon{
+	width: 20px;
+	height: 35px;
+}
+
 
 /*.center {
 	display: flex;
@@ -176,5 +192,3 @@ flex-direction: column;
 /*position: absolute;  postulat de départ 
   top: 50%; left: 50%;  à 50%/50% du parent référent 
   transform: translate(-50%, -50%); décalage de 50% de sa propre taille */
-
-
