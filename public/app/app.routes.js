@@ -15,18 +15,11 @@ angular.module('app.routes', ['ngRoute'])
 			//controller: "", 
 			//controlelrAs: ''
 		})
-		
-		// register page
-		.when('/inscription', {
-			templateUrl : 'app/views/pages/register.html',
-			//controller  : 'mainController',
-			//controllerAs: 'register'
+		.when('/signup', {
+			templateUrl: 'app/views/pages/signup/signup.html',
+			// controller: 'signupController',
+			// controllerAs: 'signupCtrl'
 		})
-		//home page
-		.when('/home',{
-			templateUrl : 'app/views/home/home.html'
-		})
-
 		.otherwise({redirectTo: '/'})
 });
 
