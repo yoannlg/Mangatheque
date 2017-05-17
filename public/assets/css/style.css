@@ -134,17 +134,27 @@ p{
 	height: 100%;
 }
 .containerCollection{
-	width: 100%;
+	width: 95%;
+	max-height: 85vh;
+	overflow: auto;
 	background-color: cadetblue;
 }
 .containerHeader{
-	width: 100%;
-	border: 1px solid black;
+	width: 95%;
+	position: fixed;
+	background-color: white;
+	border-top: 1px solid darksalmon;
+    border-bottom: 1px solid darkgrey;
+}
+.test{
+	padding-top: 36px;
 }
 .containerMangas{
 	display: flex;
 	justify-content:space-between;
+	padding: 2px;
 	margin-bottom: 1px;
+    border-bottom: 1px solid darkgrey;
 	min-height: 85px;
 }
 .couverture{
