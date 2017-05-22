@@ -52,6 +52,12 @@ p{
 	justify-content: space-around;
 	align-items: center;
 }
+.flex-between{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
 .flex-end{
 	display: flex;
 	justify-content: flex-end;
@@ -129,75 +135,7 @@ p{
 }
 /***********************/
 
-/***********************/
-/*HOME PAGE*/
-.mainContainerHome{
-	width: 100%;
-	height: 100%;
-}
-.containerCollection{
-	width: 95%;
-	max-height: 85vh;
-	overflow: auto;
-	background-color: cadetblue;
-}
-.containerHeader{
-	width: 95%;
-	position: fixed;
-	background-color: white;
-	border-top: 1px solid darksalmon;
-    border-bottom: 1px solid darkgrey;
-}
-.test{
-	padding-top: 36px;
-}
-.containerMangas{
-	display: flex;
-	justify-content:space-between;
-	padding: 2px;
-	margin-bottom: 1px;
-    border-bottom: 1px solid darkgrey;
-	min-height: 85px;
-}
-.couverture{
-	width: 60px;
-	background-color: green;
-}
-.addRemove{
-	width: 20px;
-	/*border: 1px solid red;*/
-}
-
-.bloc{
-	display: flex;
-	flex: 1 0 auto;
-	justify-content: space-between;
-	/*border: 1px solid yellow;*/
-}
-.blocInfo{
-	display: flex;
-	justify-content: space-around;
-
-	/*border: 2px solid green;*/
-}
-.number p ~ p{
-	padding-left: 5px;
-}
-.number p:first-child{
-	padding-right: 5px;
-	border-right: 1px solid black;
-}
-
-.containerFooter{
-	width: 95%;
-	background-color: white;
-	border-top: 1px solid darksalmon;
-    border-bottom: 1px solid darkgrey;
-}
 /******************/
-
-/******************/
-
 /*BOUTON*/
 .btn-medium {
 	width: 80%;
@@ -245,64 +183,3 @@ p{
 	width: 20px;
 	height: 35px;
 }
-
-
-/*.center {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
-}
-.center-column {
-	text-align: center;
-	font
-}
-.center2{
-	width: 
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-flow: wrap;
-}
-.container {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border:2px solid yellow;
-}
-.container2{
-	width: 80%;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-}*/
-
-
-/*.btn-validate{
-	width: 60%;
-	margin: 15px auto;
-	text-align: center;
-    vertical-align: middle;
-    text-decoration: none;
-    background-color: rgba(217,217,217,0.3);
-    color: #C8C8C8;
-    border: 1px solid #C8C8C8;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-.flex-center{
-	display: flex;
-	justify-content: center;
-	margin: 10px;
-}
-.flex-center i{
-	margin: 0 10px;
-}*/
-
-
-
-/*position: absolute;  postulat de départ 
-  top: 50%; left: 50%;  à 50%/50% du parent référent 
-  transform: translate(-50%, -50%); décalage de 50% de sa propre taille */
