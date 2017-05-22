@@ -11,15 +11,24 @@ angular.module('app.routes', ['ngRoute'])
 
 		// route for the home page
 		.when('/', {
-			templateUrl : 'app/views/pages/login.html'
+			templateUrl : 'app/views/login/login.html'
 			//controller: "", 
 			//controlelrAs: ''
 		})
-		.when('/signup', {
-			templateUrl: 'app/views/signup/signup.html',
-			controller: 'signupController',
-			// controllerAs: 'signupCtrl'
+
+		// .when('/signup', {
+		// 	templateUrl: 'app/views/signup/signup.html',
+		// 	controller: 'signupController',
+		// 	// controllerAs: 'signupCtrl'
+		// })
+
+		.when('/home', {
+			templateUrl: 'app/views/home/home.html'
 		})
+		.when('/home/add-collection', {
+			templateUrl: 'app/views/addCollection/addCollection.html'
+		})
+
 		.otherwise({redirectTo: '/'})
 });
 
