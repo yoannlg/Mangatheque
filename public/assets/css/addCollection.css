@@ -1,0 +1,9 @@
+form input[type = "number"]{
+	width: 40px;
+	margin: 0 20px;
+	text-align: center;
+	color:green;
+}
+.searchBarForm button{
+	background-color: lightblue;
+}
