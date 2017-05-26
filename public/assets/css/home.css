@@ -2,8 +2,10 @@
 
 .mainContainerHome{
 	width: 100%;
-	height: 100%;
+	height: 85vh;
 }
+
+
 
 .number p ~ p{
 	padding-left: 5px;
@@ -12,10 +14,15 @@
 	padding-right: 5px;
 	border-right: 1px solid black;
 }
+.registerLogin{
+	text-align: center;
+	margin-top: 10px;
+}
 .containerFooter{
 	width: 95%;
 	margin: 0 10px;
+	padding: 5px 0;
 	background-color: white;
 	border-top: 1px solid darksalmon;
-  border-bottom: 1px solid darkgrey;
+    border-bottom: 1px solid darkgrey;
 }
