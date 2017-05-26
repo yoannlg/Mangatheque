@@ -12,9 +12,15 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 	//$httpProvider.interceptors.push('AuthInterceptor');
 
 })
-.controller('signupController', function($scope, $http) {
-	$scope.toto = 'coucou';
-});
 
+// FORMAT DES FICHIERS CONTROLLERS : 
+
+// .controller('testController', function($scope, $http) {
+// 	$scope.toto = 'le code s\'affiche';
+// })
+
+// NE PAS OUBLIER DE NE PAS METTRE DE ; A LA FIN DE SON CODE CONTROLLER
+// LE FICHIER NE DOIT CONTENIR QUE LE CONTROLLER
+// NE PAS OUBLIER D\'AJOUTER LA ROUTE DU CONTROLLER DANS LE GULPFILE.JS
 
 //angular.module('mangatheque', ['restangular'])

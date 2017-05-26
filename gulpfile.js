@@ -3,6 +3,8 @@ var gulp = require('gulp');
 var nodemon = require('gulp-nodemon');
 var notify = require('gulp-notify');
 var livereload = require('gulp-livereload');
+var concat = require('gulp-concat');
+ 
 
 // Task
 gulp.task('default', function() {
@@ -19,4 +21,10 @@ gulp.task('default', function() {
 			.pipe(livereload())
 			.pipe(notify('Reloading page, please wait...'));
 	})
-})
+}),
+
+gulp.task('scripts', function() {
+  return gulp.src(['./public/app/app.js','./public/app/views/signup/signup.js', './public/app/app.routes.js'])
+    .pipe(concat('all.js'))
+    .pipe(gulp.dest('./public/dist/'));
+});
