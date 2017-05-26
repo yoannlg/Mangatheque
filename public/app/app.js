@@ -11,6 +11,9 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 	// attach our auth interceptor to the http requests
 	//$httpProvider.interceptors.push('AuthInterceptor');
 
+})
+.controller('signupController', function($scope, $http) {
+	$scope.toto = 'coucou';
 });
 
 
