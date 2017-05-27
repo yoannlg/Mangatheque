@@ -20,22 +20,22 @@
 		</div>
 		<div class="signup-container">
 			<div class="signup-email">
-				<label><b>{{toto}}</b></label>
-				<input type="text" placeholder="Entrez votre Email" name="email" required>
+				<label><b>Pseudonyme</b></label>
+				<input type="text" ng-model="nickName" placeholder="Entrez votre Pseudonyme" name="email" required>
 			</div>
 			
 			<div class="signup-pwd">
 				<label><b>Mot de Passe</b></label>
-				<input type="password" placeholder="Entrez votre mot de passe" name="psw" required>
+				<input type="password" ng-model="password" placeholder="Entrez votre mot de passe" name="psw" required>
 			</div>
 
 			<div class="rpt-pwd">
 				<label><b>Confirmation mot de passe</b></label>
-				<input type="password" placeholder="Entrez votre mot de passe à nouveau" name="psw-repeat" required>
+				<input type="password" ng-model="checkPwd" placeholder="Entrez votre mot de passe à nouveau" name="psw-repeat" required>
 			</div>
 
 			<div class="clearfix">
-      	<button type="submit" class="signupbtn">S'inscrire</button>
+      	<button type="submit" ng-click="setAuth()" class="signupbtn">S'inscrire</button>
     	</div>
 			
 		</div>

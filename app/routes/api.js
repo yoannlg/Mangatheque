@@ -58,12 +58,7 @@ apiRouter.route('/authenticate')
 
 	        // if user is found and password is right
 	        // create a token
-	        var token = jwt.sign({
-	        	name: user.name,
-	        	username: user.username
-	        }, superSecret, {
-	          expiresIn: '7d' // expires in 24 hours
-	        });
+	        var token = generateToken(user)
 
 	        // return the information including token as JSON
 	        res.json({
@@ -78,15 +73,17 @@ apiRouter.route('/authenticate')
 	  });
 	});
 
+function generateToken(user) {
+	        return jwt.sign({
+	        	name: user.name,
+	        	username: user.username
+	        }, superSecret, {
+	          expiresIn: '7d' // expires in 24 hours
+	        });
+}
 
 
-
-
-
-
-
-// route middleware to verify a token
-	apiRouter.use(function(req, res, next) {
+function authenticate(req, res, next) {
 		// do logging
 		console.log('Somebody just came to our app!');
 
@@ -122,7 +119,48 @@ apiRouter.route('/authenticate')
    	 	});
 	    
 	  }
-	});
+	}
+
+
+
+// // route middleware to verify a token
+// 	apiRouter.use(function(req, res, next) {
+// 		// do logging
+// 		console.log('Somebody just came to our app!');
+
+// 	  // check header or url parameters or post parameters for token
+// 	  var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+// 	  // decode token
+// 	  if (token) {
+
+// 	    // verifies secret and checks exp
+// 	    jwt.verify(token, superSecret, function(err, decoded) {      
+
+// 	      if (err) {
+// 	        res.status(403).send({ 
+// 	        	success: false, 
+// 	        	message: 'Failed to authenticate token.' 
+// 	    	});  	   
+// 	      } else { 
+// 	        // if everything is good, save to request for use in other routes
+// 	        req.decoded = decoded;
+	            
+// 	        next(); // make sure we go to the next routes and don't stop here
+// 	      }
+// 	    });
+
+// 	  } else {
+
+// 	    // if there is no token
+// 	    // return an HTTP response of 403 (access forbidden) and an error message
+//    	 	res.status(403).send({ 
+//    	 		success: false, 
+//    	 		message: 'No token provided.' 
+//    	 	});
+	    
+// 	  }
+// 	});
 
 
 
@@ -160,7 +198,10 @@ apiRouter.route('/users')
 						return res.send(err);
             }
             //return a message
-            res.json({ message: 'User created!' });
+            var token = generateToken(user)
+            res.json({ message: 'User created!',
+            						user : user,
+            						token : token});
         });
         
     })
@@ -175,7 +216,7 @@ apiRouter.route('/users')
     });
 
 apiRouter.route('/users/:user_id')
-	.get(function(req,res) {
+	.get(authenticate, function(req,res) {
 		User.findById(req.params.user_id, function(err, user) {
             if (err)
                 res.send(err);
@@ -217,7 +258,7 @@ apiRouter.route('/users/:user_id')
 // on routes that end in serie
 // ----------------------------------------------------
 apiRouter.route('/users/:user_id/series')
-	.post(function(req,res){
+	.post(authenticate, function(req,res){
 		var serie      = new Serie();
 
 		serie._userId  = req.params.user_id;
