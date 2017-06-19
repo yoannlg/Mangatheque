@@ -51,7 +51,6 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 
 			$http.post('/api/users', auth)
 				.success(function(data) {
-        	console.log('success')
         	$location.path('/home')
 	    	})
 				.error(function(error) {

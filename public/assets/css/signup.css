@@ -3,7 +3,6 @@
 	height: 50%;
 	min-height: 400px;
 	min-width: 300px;
-	background-color: grey;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -15,20 +14,29 @@
 	text-align: center;
 }
 
+.shadow-color {
+    color: white;
+    text-shadow: 2px 2px 2px black;
+}
+
 .title-margin {
 	margin-top: 20px;
+    color: white;
+    margin-bottom: 40px;
+    position: relative;
+    text-shadow: 2px 2px 2px black;
+    top: 1rem;
 }
 
 .signup-container {
 	width: 90%;
 	height: 60%;
-	background-color: red;
 	margin-bottom : 50px;
 }
 
 /* Full-width input fields */
 input[type=text], input[type=password] {
-    width: 100%;
+    width: 110%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -38,13 +46,15 @@ input[type=text], input[type=password] {
 
 /* Set a style for all buttons */
 button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
     width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    background-color: rgba(0,0,0,0.3);
+    color: white;
+    border: 0.1rem solid #C8C8C8;
+    border-radius: 1rem;
+    padding: 0.7rem;
 }
 
 
@@ -54,9 +64,10 @@ button {
     width: 50%;
 }
 
-/* Add padding to container elements */
-.container {
-    padding: 16px;
+.clearfix {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Clear floats */

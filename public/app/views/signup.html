@@ -19,20 +19,34 @@
 			Ajoutez, éditez ou supprimez en quelques click.</p>	
 		</div>
 		<div class="signup-container">
-			<div class="signup-email">
-				<label><b>Pseudonyme</b></label>
+		<form action="#">
+				<div class="flex-center signup-email">
+					<i class="fa fa-user icon fa-2x" aria-hidden="true"></i>
+					<input type="text" ng-model="nickName" placeholder="Entrez votre Pseudonyme" required>
+				</div>
+				<div class="flex-center signup-pwd">
+					<i class="fa fa-lock icon fa-2x" aria-hidden="true"></i>
+					<input type="password" ng-model="password" placeholder="Entrez votre mot de passe" name="psw" required>
+				</div>
+				<div class="flex-center rpt-pwd">
+					<i class="fa fa-lock icon fa-2x" aria-hidden="true"></i>
+					<input type="password" ng-model="checkPwd" placeholder="Entrez votre mot de passe à nouveau" name="psw-repeat" required>
+				</div>
+			</form>
+			<!-- <div class="signup-email">
+				<label><b class="shadow-color">Pseudonyme</b></label>
 				<input type="text" ng-model="nickName" placeholder="Entrez votre Pseudonyme" name="email" required>
 			</div>
 			
 			<div class="signup-pwd">
-				<label><b>Mot de Passe</b></label>
+				<label><b class="shadow-color">Mot de Passe</b></label>
 				<input type="password" ng-model="password" placeholder="Entrez votre mot de passe" name="psw" required>
 			</div>
 
 			<div class="rpt-pwd">
-				<label><b>Confirmation mot de passe</b></label>
+				<label><b class="shadow-color">Confirmation mot de passe</b></label>
 				<input type="password" ng-model="checkPwd" placeholder="Entrez votre mot de passe à nouveau" name="psw-repeat" required>
-			</div>
+			</div> -->
 
 			<div class="clearfix">
       	<button type="submit" ng-click="setAuth()" class="signupbtn">S'inscrire</button>
