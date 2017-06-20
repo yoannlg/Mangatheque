@@ -35,7 +35,7 @@
 }
 
 /* Full-width input fields */
-input[type=text], input[type=password] {
+.signup-input {
     width: 110%;
     padding: 12px 20px;
     margin: 8px 0;
