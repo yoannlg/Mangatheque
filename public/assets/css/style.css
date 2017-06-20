@@ -41,7 +41,7 @@ p{
 	width: 100%;
 	height: 100vh;
 	position: absolute;
-	top: 0;
+	bottom: 0;
 }
 /*******************/
 
@@ -146,55 +146,12 @@ p{
 	height: 10rem;
 	border: 0.2rem solid #00ff68;
 }
+
+
+
 /***********************/
 /*HOME*/
-.containerCollection{
-	width: 95%;
-	max-height: 85vh;
-	overflow: auto;
-	background-color: cadetblue;
-}
-.containerHeader{
-	width: 95%;
-	position: fixed;
-	background-color: white;
-	border-top: 0.1rem solid darksalmon;
-    border-bottom: 0.1rem solid darkgrey;
-}
-.choice{
-width: 8rem;
-}
-.test{
-	padding-top: 3.6rem;
-}
-.containerMangas{
-	display: flex;
-	justify-content:space-between;
-	padding: 0.2rem;
-	margin-bottom: 0.1rem;
-    border-bottom: 0.1rem solid darkgrey;
-	min-height: 8.5rem;
-}
-.couverture{
-	width: 6rem;
-	background-color: green;
-}
-.addRemove{
-	width: 2rem;
-}
-.bloc{
-	display: flex;
-	flex: 1 0 auto;
-	margin: 0 2rem;
-	/*justify-content: space-between;*/
-	/*border: 1px solid yellow;*/
-}
-.blocInfo{
-	display: flex;
-	justify-content: space-around;
 
-	/*border: 2px solid green;*/
-}
 /******************/
 /*BOUTON*/
 .btn-medium {
