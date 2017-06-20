@@ -9,15 +9,15 @@
 			<form action="#">
 				<div class="flex-center">
 					<i class="fa fa-user fa-2x" aria-hidden="true"></i>
-					<input type="text" name="name" placeholder="Votre pseudo">
+					<input type="text" ng-model="nickName" name="name" placeholder="Votre pseudo">
 				</div>
 				<div class="flex-center">
 					<i class="fa fa-lock fa-2x icon" aria-hidden="true"></i>
-					<input type="password" name="psw" placeholder="Votre mot de passe">
+					<input type="password" ng-model="password" name="psw" placeholder="Votre mot de passe">
 				</div>
 			</form>
 		</div>
-		<button class="btn btn-medium">Se connecter</button>
+		<button class="btn btn-medium" ng-click="setAuth()">Se connecter</button>
 	</div>
 	<p class="registerLogin"><a href="/signup">Créer un compte</a></p>
 </div>

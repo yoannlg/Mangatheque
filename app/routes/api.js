@@ -41,7 +41,7 @@ apiRouter.route('/authenticate')
 
 	    // no user with that username was found
 	    if (!user) {
-	      res.json({ 
+	      res.status(402).json({ 
 	      	success: false, 
 	      	message: 'Authentication failed. User not found.' 
 	    	});
@@ -50,7 +50,7 @@ apiRouter.route('/authenticate')
 	      // check if password matches
 	      var validPassword = user.comparePassword(req.body.password);
 	      if (!validPassword) {
-	        res.json({ 
+	        res.status(403).json({ 
 	        	success: false, 
 	        	message: 'Authentication failed. Wrong password.' 
 	      	});
@@ -61,7 +61,7 @@ apiRouter.route('/authenticate')
 	        var token = generateToken(user)
 
 	        // return the information including token as JSON
-	        res.json({
+	        res.status(200).json({
 	          success: true,
 	          message: 'Enjoy your token!',
 	          token: token

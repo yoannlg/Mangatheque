@@ -11,8 +11,8 @@ angular.module('app.routes', ['ngRoute'])
 
 		// route for the home page
 		.when('/', {
-			templateUrl : 'app/views/login.html'
-			//controller: "", 
+			templateUrl : 'app/views/login.html',
+			controller: "loginController" 
 			//controlelrAs: ''
 		})
 		.when('/home', {

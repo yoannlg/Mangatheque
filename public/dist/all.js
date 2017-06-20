@@ -61,6 +61,31 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 			}
 		}
 })
+.controller('loginController', function($scope, $http, $location) {
+		
+	$scope.nickName;
+	$scope.password;
+
+	$scope.setAuth = function() {
+		console.log("Username : ",$scope.nickName);
+		console.log("Password : ",$scope.password);
+			var auth = {
+				name : $scope.nickName,
+				password : $scope.password
+			};
+
+		$http.post('/api/authenticate', auth)
+			.success(function(data) {
+				console.log('Success : ', data)
+	    	$location.path('/home')
+	  	})
+			.error(function(error) {
+	      alert('Inscription non effectuée')
+	      console.log(error)
+	  	});
+
+		}
+})
 // ------------------------------------------
 // WARNING:::::::::::::::::::::::::::::::::::
 // ROUTE A REVOIR JUSTE COPIER PAS AJUSTER!
@@ -74,8 +99,8 @@ angular.module('app.routes', ['ngRoute'])
 
 		// route for the home page
 		.when('/', {
-			templateUrl : 'app/views/login.html'
-			//controller: "", 
+			templateUrl : 'app/views/login.html',
+			controller: "loginController" 
 			//controlelrAs: ''
 		})
 		.when('/home', {
