@@ -193,13 +193,13 @@ apiRouter.route('/users')
         user.save(function(err) {
             if (err){
             	if (err.code == 11000) 
-						return res.json({ success: false, message: 'A user with that username already exists. '});
+						return res.status(403).json({ success: false, message: 'A user with that username already exists. '});
 					else 
 						return res.send(err);
             }
             //return a message
             var token = generateToken(user)
-            res.json({ message: 'User created!',
+            res.status(200).json({ message: 'User created!',
             						user : user,
             						token : token});
         });
@@ -233,7 +233,7 @@ apiRouter.route('/users/:user_id')
 			user.save(function(err){
 			if (err)
 				res.send(err);
-			res.json({ message: 'User updated!' });
+			res.status(200).json({ message: 'User updated!' });
 			});
 		});
 	})
@@ -244,7 +244,7 @@ apiRouter.route('/users/:user_id')
 			if (err)
 				res.send(err);
 
-			res.json({message: 'Successfully deleted'});
+			res.status(200).json({message: 'Successfully deleted'});
 		});
 	});
 

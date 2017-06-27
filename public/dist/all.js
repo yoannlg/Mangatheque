@@ -51,7 +51,10 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 
 			$http.post('/api/users', auth)
 				.success(function(data) {
-        	$location.path('/home')
+				console.log('Success : ', data)
+				localStorage.setItem('mangaToken', data.token);
+	    	$location.path('/home')
+	    	console.log("test : ",localStorage.mangaToken);
 	    	})
 				.error(function(error) {
 	        alert('Inscription non effectuée')
@@ -76,8 +79,10 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 
 		$http.post('/api/authenticate', auth)
 			.success(function(data) {
-				console.log('Success : ', data)
+				console.log('Success : ', data.token)
+				localStorage.setItem('mangaToken', data.token);
 	    	$location.path('/home')
+	    	console.log("test : ",localStorage.mangaToken);
 	  	})
 			.error(function(error) {
 	      alert('Inscription non effectuée')
@@ -104,7 +109,18 @@ angular.module('app.routes', ['ngRoute'])
 			//controlelrAs: ''
 		})
 		.when('/home', {
-			templateUrl:'app/views/home.html'
+			templateUrl:'app/views/home.html',
+			resolve: {
+				function($location) {
+					if(!localStorage.mangaToken) {
+						alert("vous n'avez pas accès à cette page, connectez-vous");
+						$location.path('/login');
+					}
+					else {
+						return true;
+					}
+				}
+			}
 		})
 		.when('/home/add-collection', {
 			templateUrl: 'app/views/addCollection.html'

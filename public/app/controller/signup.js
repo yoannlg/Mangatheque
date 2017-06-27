@@ -26,7 +26,10 @@
 
 			$http.post('/api/users', auth)
 				.success(function(data) {
-        	$location.path('/home')
+				console.log('Success : ', data)
+				localStorage.setItem('mangaToken', data.token);
+	    	$location.path('/home')
+	    	console.log("test : ",localStorage.mangaToken);
 	    	})
 				.error(function(error) {
 	        alert('Inscription non effectuée')

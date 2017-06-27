@@ -16,7 +16,18 @@ angular.module('app.routes', ['ngRoute'])
 			//controlelrAs: ''
 		})
 		.when('/home', {
-			templateUrl:'app/views/home.html'
+			templateUrl:'app/views/home.html',
+			resolve: {
+				function($location) {
+					if(!localStorage.mangaToken) {
+						alert("vous n'avez pas accès à cette page, connectez-vous");
+						$location.path('/login');
+					}
+					else {
+						return true;
+					}
+				}
+			}
 		})
 		.when('/home/add-collection', {
 			templateUrl: 'app/views/addCollection.html'
