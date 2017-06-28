@@ -66,7 +66,7 @@ apiRouter.route('/authenticate')
 	          message: 'Enjoy your token!',
 	          token: token
 	        });
-	      }   
+	    }   
 
 	    }
 
@@ -74,12 +74,13 @@ apiRouter.route('/authenticate')
 	});
 
 function generateToken(user) {
-	        return jwt.sign({
-	        	name: user.name,
-	        	username: user.username
-	        }, superSecret, {
-	          expiresIn: '7d' // expires in 24 hours
-	        });
+    return jwt.sign({
+    	name: user.name,
+    	username: user.username
+    },
+    superSecret, {
+      expiresIn: '7d'
+    });
 }
 
 
@@ -161,10 +162,6 @@ function authenticate(req, res, next) {
 	    
 // 	  }
 // 	});
-
-
-
-
 
 
 

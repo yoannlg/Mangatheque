@@ -13,7 +13,6 @@ angular.module('app.routes', ['ngRoute'])
 		.when('/', {
 			templateUrl : 'app/views/login.html',
 			controller: "loginController" 
-			//controlelrAs: ''
 		})
 		.when('/home', {
 			templateUrl:'app/views/home.html'
@@ -24,7 +23,6 @@ angular.module('app.routes', ['ngRoute'])
 		.when('/signup', {
 			templateUrl: 'app/views/signup.html',
 			controller: 'signupController'
-			// controllerAs: 'signupCtrl'
 		})
 	
 		.otherwise({redirectTo: '/'})
