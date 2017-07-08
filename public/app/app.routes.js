@@ -17,6 +17,7 @@ angular.module('app.routes', ['ngRoute'])
 		})
 		.when('/home', {
 			templateUrl:'app/views/home.html',
+			controller: 'mainController',
 			resolve: {
 				function($location) {
 					if(!sessionStorage.mangaToken && !sessionStorage.userID) {

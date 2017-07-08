@@ -34,170 +34,20 @@
 			</div>
 		</div>
 		<div class="topContainer">
-			<div class="containerMangas">
-				<div class="bloc flex-between">
-				<div class="couverture"></div>
-					<div class="trash flex-center pointer">
-						<i class="fa fa-trash fa-lg" aria-hidden="true"></i>
-					</div>
-					
-					<div class="blocInfo flex-column-center">
-						<p>Naruto</p>
-						<div class="number flex-around">
-							<p class="green">34</p>
-							<p class="red">71</p>
-						</div>
-						<p>Itomo Mawasashite</p>
-					</div>
-					<div class="addRemove flex-column-around">
-						<p>
-							<i class="fa fa-plus green fa-lg pointer" aria-hidden="true"></i>
-						</p>
-						<p>
-							<i class="fa fa-minus red fa-lg pointer" aria-hidden="true"></i>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="containerMangas">
-				<div class="couverture"></div>
+
+			<div class="containerMangas" ng-repeat="manga in displayManga">
+				<img class="couverture" ng-src="{{manga.imageURL}}"></img>
 				<div class="bloc flex-between">
 					<div class="trash flex-center pointer">
 						<i class="fa fa-trash fa-lg" aria-hidden="true"></i>
 					</div>
-					
 					<div class="blocInfo flex-column-center">
-						<p>Naruto</p>
+						<p>{{manga.title}}</p>
 						<div class="number flex-around">
 							<p class="green">34</p>
-							<p class="red">71</p>
+							<p class="red">{{manga.chapters.len}}</p>
 						</div>
-						<p>auteur : Itomo Mawasashite</p>
-					</div>
-					<div class="addRemove flex-column-around">
-						<p>
-							<i class="fa fa-plus green fa-lg pointer" aria-hidden="true"></i>
-						</p>
-						<p>
-							<i class="fa fa-minus red fa-lg pointer" aria-hidden="true"></i>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="containerMangas">
-				<div class="couverture"></div>
-				<div class="bloc flex-between">
-					<div class="trash flex-center pointer">
-						<i class="fa fa-trash fa-lg" aria-hidden="true"></i>
-					</div>
-					
-					<div class="blocInfo flex-column-center">
-						<p>Naruto</p>
-						<div class="number flex-around">
-							<p class="green">34</p>
-							<p class="red">71</p>
-						</div>
-						<p>auteur : Itomo Mawasashite</p>
-					</div>
-					<div class="addRemove flex-column-around">
-						<p>
-							<i class="fa fa-plus green fa-lg pointer" aria-hidden="true"></i>
-						</p>
-						<p>
-							<i class="fa fa-minus red fa-lg pointer" aria-hidden="true"></i>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="containerMangas">
-				<div class="couverture"></div>
-				<div class="bloc flex-between">
-					<div class="trash flex-center pointer">
-						<i class="fa fa-trash fa-lg" aria-hidden="true"></i>
-					</div>
-					
-					<div class="blocInfo flex-column-center">
-						<p>Naruto</p>
-						<div class="number flex-around">
-							<p class="green">34</p>
-							<p class="red">71</p>
-						</div>
-						<p>auteur : Itomo Mawasashite</p>
-					</div>
-					<div class="addRemove flex-column-around">
-						<p>
-							<i class="fa fa-plus green fa-lg pointer" aria-hidden="true"></i>
-						</p>
-						<p>
-							<i class="fa fa-minus red fa-lg pointer" aria-hidden="true"></i>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="containerMangas">
-				<div class="couverture"></div>
-				<div class="bloc flex-between">
-					<div class="trash flex-center pointer">
-						<i class="fa fa-trash fa-lg" aria-hidden="true"></i>
-					</div>
-					
-					<div class="blocInfo flex-column-center">
-						<p>Naruto</p>
-						<div class="number flex-around">
-							<p class="green">34</p>
-							<p class="red">71</p>
-						</div>
-						<p>auteur : Itomo Mawasashite</p>
-					</div>
-					<div class="addRemove flex-column-around">
-						<p>
-							<i class="fa fa-plus green fa-lg pointer" aria-hidden="true"></i>
-						</p>
-						<p>
-							<i class="fa fa-minus red fa-lg pointer" aria-hidden="true"></i>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="containerMangas">
-				<div class="couverture"></div>
-				<div class="bloc flex-between">
-					<div class="trash flex-center pointer">
-						<i class="fa fa-trash fa-lg" aria-hidden="true"></i>
-					</div>
-					
-					<div class="blocInfo flex-column-center">
-						<p>Naruto</p>
-						<div class="number flex-around">
-							<p class="green">34</p>
-							<p class="red">71</p>
-						</div>
-						<p>auteur : Itomo Mawasashite</p>
-					</div>
-					<div class="addRemove flex-column-around">
-						<p>
-							<i class="fa fa-plus green fa-lg pointer" aria-hidden="true"></i>
-						</p>
-						<p>
-							<i class="fa fa-minus red fa-lg pointer" aria-hidden="true"></i>
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="containerMangas">
-				<div class="couverture"></div>
-				<div class="bloc flex-between">
-					<div class="trash flex-center pointer">
-						<i class="fa fa-trash fa-lg" aria-hidden="true"></i>
-					</div>
-					
-					<div class="blocInfo flex-column-center">
-						<p>Naruto</p>
-						<div class="number flex-around">
-							<p class="green">34</p>
-							<p class="red">71</p>
-						</div>
-						<p>auteur : Itomo Mawasashite</p>
+						<p>auteur : {{manga.author}}</p>
 					</div>
 					<div class="addRemove flex-column-around">
 						<p>
