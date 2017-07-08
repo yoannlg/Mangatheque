@@ -12,12 +12,11 @@
 					<p>...</p>
 				</div> -->
 			</div>
-			<!-- <div>
-				<i class="fa fa-caret-down fa-2x pointer" aria-hidden="true"></i>
-			</div> -->
 			<div>
-				<i class="fa fa-plus-circle fa-lg pointer" aria-hidden="true"></i>
-
+				<i class="fa fa-caret-down fa-2x pointer" aria-hidden="true"></i>
+			</div>
+			<div>
+				<i class="fa fa-user-times fa-lg pointer" aria-hidden="true"></i>
 			</div>
 			<div id="searchBar">
 				<form class="searchBarForm flex-center" action="" method="post">
@@ -30,9 +29,11 @@
 		</div>
 
 		<div class="test" ng-if="checkCall">
+		<div class="topContainer">
+
 			<div class="containerMangas" ng-repeat="manga in mangaList track by $index">
-				<div class="couverture">couv</div>
 				<div class="bloc flex-between">
+				<div class="couverture">couv</div>
 						<div class="addRemove flex-column-around">
 							<p>
 								<i class="fa fa-plus fa-lg pointer green" aria-hidden="true"></i>
@@ -55,10 +56,10 @@
 			</div>
 		</div>
 		</div>
+		</div>
 		<div class="containerFooter flex-around">
 			<div>
 				<i class="fa fa-undo" aria-hidden="true"></i>
 			</div>
-			<div>Disconnected</div>
 		</div>
 </div>

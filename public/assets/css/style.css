@@ -107,6 +107,8 @@ p{
 .mainContainer{
 	width: 100%;
 	height: 85vh;
+	position: relative;
+	top: 1rem;
 }
 .mainContainerLogin{
 	width: 100%;

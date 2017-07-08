@@ -51,7 +51,7 @@ width: 4rem;
 }
 
 .topContainer{
-	padding-top: 2.8rem;
+	padding-top: 2.2rem;
 }
 .containerMangas{
 	display: flex;
@@ -80,7 +80,7 @@ width: 4rem;
 .blocInfo{
 	display: flex;
 	justify-content: space-around;
-
+	min-width: 13rem;
 	/*border: 2px solid green;*/
 }
 
