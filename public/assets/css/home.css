@@ -39,6 +39,9 @@
 	background-color: white;
     border-bottom: 0.1rem solid darkgrey;
 }
+.containerHeader a{
+	color: inherit;
+}
 .choice{
 width: 4rem;
 }
