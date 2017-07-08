@@ -242,7 +242,8 @@ apiRouter.route('/users/:user_id')
 			user.save(function(err){
 			if (err)
 				res.send(err);
-			res.status(200).json({ message: 'mangaList updated!' });
+			res.status(200).json({ message: 'mangaList updated!',
+															mangaList: user.manga_id });
 			});
 		});
 	})
