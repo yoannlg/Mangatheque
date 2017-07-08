@@ -238,7 +238,7 @@ apiRouter.route('/users/:user_id')
 		User.findById(req.params.user_id, function(err, user){
 			if (err)
 				res.send(err);
-			user.mangaId.push({id: req.body.mangaId, chapter: 0});  // update the mangaList
+			user.mangaId.push({id: req.body.mangaId});  // update the mangaList
 			user.save(function(err){
 			if (err)
 				res.send(err);
@@ -258,6 +258,21 @@ apiRouter.route('/users/:user_id')
 		});
 	});
 
+
+apiRouter.route('/users/:user_id/chapter')
+	.post(function(req, res){
+		User.findById(req.params.user_id, function(err, user){
+			if (err)
+				res.send(err);
+			user.mangaId.id = req.body.chapter;  // update the mangaList
+			user.save(function(err){
+			if (err)
+				res.send(err);
+			res.status(200).json({ message: 'mangaList updated!',
+															mangaList: user.mangaId });
+			});
+		});
+	});
 
 
 

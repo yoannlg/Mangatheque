@@ -136,24 +136,36 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 	  .get("http://www.mangaeden.com/api/manga/" + $scope.callApi[i].id + "/")
 	  .success(function(dataManga) {
 	    $scope.displayManga[i] = dataManga;
-	    console.log('displayManga : ', $scope.displayManga);
 	  })
 	  .error(function(data){
 	  	console.log('Fail call mangaEdenApi');
 	  })
 	}
 
+	// var addChapter = function(chapterLength) {
+	// 	$http
+	//   		.post("/api/users/" + sessionStorage.userId + "/chapter", {chapter : chapterLength})
+	//   		.success(function(data) {
+	//   			console.log("succes : ", data);
+	//   		})
+	//   		.error(function(error) {
+	//   			console.log('ERROR      : ', error);
+	//   		})
+	// }
+
+	// var removeChapter = function() {
+
+	// }
+
   $http
 	.get("/api/users/" + sessionStorage.userId)
 	.success(function(data) {
-		console.log('success call mangaList : ', data);
 		for (var i = data.length - 1; i >= 0; i--) {
 			$scope.callApi = data;
 		}
 		for (var i = 0; i < $scope.callApi.length; i++) {
 		  getInformation(i);
 		}
-		console.log('test : ', $scope.callApi);
 	})
 	.error(function(error) {
 		console.log("error :   ",error)
