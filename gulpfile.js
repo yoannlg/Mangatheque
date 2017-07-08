@@ -24,7 +24,7 @@ gulp.task('default', function() {
 }),
 
 gulp.task('scripts', function() {
-  return gulp.src(['./public/app/app.js','./public/app/controller/signup.js', './public/app/controller/loginCtrl.js', './public/app/app.routes.js'])
+  return gulp.src(['./public/app/app.js','./public/app/controller/signup.js', './public/app/controller/loginCtrl.js', './public/app/controller/addCollectionCtrl.js', './public/app/app.routes.js'])
     .pipe(concat('all.js'))
     .pipe(gulp.dest('./public/dist/'));
 });

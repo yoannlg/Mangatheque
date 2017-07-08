@@ -12,7 +12,7 @@ angular.module('app.routes', ['ngRoute'])
 		// route for the home page
 		.when('/', {
 			templateUrl : 'app/views/login.html',
-			controller: "loginController" 
+			controller: 'loginController' 
 			//controlelrAs: ''
 		})
 		.when('/home', {
@@ -30,7 +30,8 @@ angular.module('app.routes', ['ngRoute'])
 			}
 		})
 		.when('/home/add-collection', {
-			templateUrl: 'app/views/addCollection.html'
+			templateUrl: 'app/views/addCollection.html',
+			controller: 'addCollectionController'
 		})
 		.when('/signup', {
 			templateUrl: 'app/views/signup.html',

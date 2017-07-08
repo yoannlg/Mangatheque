@@ -91,6 +91,32 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 
 		}
 })
+.controller('addCollectionController', function($scope, $http, $q) {
+
+		$scope.mangaList = [];
+		$scope.checkCall = false;
+
+			$http
+			.get('http://www.mangaeden.com/api/list/0/')
+			.success(function(data) {
+				for (var i = 20 - 1; i >= 0; i--) {
+					$scope.mangaList.push(data.manga[i]);
+				 }
+				$scope.checkCall = true;
+				 console.log($scope.mangaList[0]);
+	  	})
+			.error(function(error) {
+	      alert('ERROR');
+	      console.log(error);
+	  	});
+
+	  	function addManga(index) {
+	  		console.log(index);
+	  		$http
+	  		.post('/api/users/' + USER_ID + '/', {manga_id})
+	  	}
+		
+})
 // ------------------------------------------
 // WARNING:::::::::::::::::::::::::::::::::::
 // ROUTE A REVOIR JUSTE COPIER PAS AJUSTER!
@@ -105,7 +131,7 @@ angular.module('app.routes', ['ngRoute'])
 		// route for the home page
 		.when('/', {
 			templateUrl : 'app/views/login.html',
-			controller: "loginController" 
+			controller: 'loginController' 
 			//controlelrAs: ''
 		})
 		.when('/home', {
@@ -123,7 +149,8 @@ angular.module('app.routes', ['ngRoute'])
 			}
 		})
 		.when('/home/add-collection', {
-			templateUrl: 'app/views/addCollection.html'
+			templateUrl: 'app/views/addCollection.html',
+			controller: 'addCollectionController'
 		})
 		.when('/signup', {
 			templateUrl: 'app/views/signup.html',
