@@ -45,6 +45,11 @@
 .choice{
 width: 4rem;
 }
+.click{
+	transition: all 2.6s;
+	transform: rotate(180deg);
+}
+
 .topContainer{
 	padding-top: 2.8rem;
 }
@@ -60,13 +65,15 @@ width: 4rem;
 	width: 6rem;
 	background-color: green;
 }
+/*Voir media query*/
+
 .addRemove{
 	width: 2rem;
 }
 .bloc{
 	display: flex;
 	flex: 1 0 auto;
-	margin: 0 2rem;
+	margin-right: 2rem;
 	/*justify-content: space-between;*/
 	/*border: 1px solid yellow;*/
 }
@@ -75,4 +82,20 @@ width: 4rem;
 	justify-content: space-around;
 
 	/*border: 2px solid green;*/
+}
+
+@media screen and (max-width: 460px) {
+	.containerHeader{
+		font-size: 0.8rem;
+	}
+	.couverture {
+	width: 5rem;
+	}
+	.bloc{
+		margin-right: 0.5rem;
+	}
+	/*.searchBarForm, input{
+		width: 6rem;
+	}*/
+
 }

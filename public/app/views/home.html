@@ -1,16 +1,23 @@
 <div class="mainContainerHome flex-center flex-column">
 	<div class="containerCollection">
 		<div class="containerHeader flex-around">
-			<div class="choice flex-between">
+			<!-- <div class="choice flex-between">
 				<p>Série</p>
 				<div class="click">
 					<p>...</p>
 				</div>
-			</div>
+			</div> -->
+
+			<select name="" id="">
+				<option value="">Titre</option>
+				<option value="">Auteur</option>
+				<option value="">Edition</option>
+			</select>
+
 			<div>
 				<i class="fa fa-caret-down fa-2x pointer" aria-hidden="true"></i>
-
 			</div>
+
 			<div>
 				<i class="fa fa-plus-circle fa-lg pointer" href="/home/add-collection" aria-hidden="true"></i>
 			</div>
@@ -19,7 +26,7 @@
 			</div>
 			<div id="searchBar">
 				<form class="searchBarForm flex-center" action="">
-					<input type="text" value="mangaSearch" placeholder="Votre recherche">
+					<input type="text" placeholder="Votre recherche">
 					<button type="submit">
 						<i class="fa fa-search" aria-hidden="true"></i>
 					</button>
@@ -28,8 +35,8 @@
 		</div>
 		<div class="topContainer">
 			<div class="containerMangas">
-				<div class="couverture"></div>
 				<div class="bloc flex-between">
+				<div class="couverture"></div>
 					<div class="trash flex-center pointer">
 						<i class="fa fa-trash fa-lg" aria-hidden="true"></i>
 					</div>
@@ -40,7 +47,7 @@
 							<p class="green">34</p>
 							<p class="red">71</p>
 						</div>
-						<p>auteur : Itomo Mawasashite</p>
+						<p>Itomo Mawasashite</p>
 					</div>
 					<div class="addRemove flex-column-around">
 						<p>
