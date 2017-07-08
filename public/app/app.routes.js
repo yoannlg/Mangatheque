@@ -19,7 +19,7 @@ angular.module('app.routes', ['ngRoute'])
 			templateUrl:'app/views/home.html',
 			resolve: {
 				function($location) {
-					if(!localStorage.mangaToken) {
+					if(!sessionStorage.mangaToken && !sessionStorage.userID) {
 						alert("vous n'avez pas accès à cette page, connectez-vous");
 						$location.path('/login');
 					}

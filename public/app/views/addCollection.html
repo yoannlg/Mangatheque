@@ -44,17 +44,12 @@
 					<div class="blocInfo flex-column-center">
 						<p>{{manga.a}}</p>
 						<div class="number flex-around">
-						<form action="post" action="traitement.php">
-							<input type="number" min='0' max='999' placeholder="0">
-						</form>	
 							<!-- <p class="green">34</p> -->
 							<p class="red">71</p>
 						</div>
-						
 					</div>
-					<div class="trash flex-center pointer" ng-click="addManga($index.name)">
-						<i class="fa fa-check-circle fa-lg blue" aria-hidden="true"></i>
-
+					<div class="trash flex-center pointer">
+						<button class="fa fa-check-circle fa-lg blue" aria-hidden="true" ng-click="addManga(manga.i)"></button>
 					</div>
 				</div>
 			</div>

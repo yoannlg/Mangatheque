@@ -25,10 +25,6 @@ module.exports = function(app, express) {
 		res.json({ message: 'hooray! welcome to our api!' });
 	});
 
-
-
-
-
 apiRouter.route('/authenticate')
 	.post(function(req, res){
 		// find the user
@@ -201,7 +197,8 @@ apiRouter.route('/users')
             var token = generateToken(user)
             res.status(200).json({ message: 'User created!',
             						user : user,
-            						token : token});
+            						token : token,
+            						id: req.params.user_id});
         });
         
     })
@@ -234,6 +231,18 @@ apiRouter.route('/users/:user_id')
 			if (err)
 				res.send(err);
 			res.status(200).json({ message: 'User updated!' });
+			});
+		});
+	})
+	.post(function(req, res){
+		User.findById(req.params.user_id, function(err, user){
+			if (err)
+				res.send(err);
+			user.manga_id.push(req.body.mangaId);  // update the mangaList
+			user.save(function(err){
+			if (err)
+				res.send(err);
+			res.status(200).json({ message: 'mangaList updated!' });
 			});
 		});
 	})

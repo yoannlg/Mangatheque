@@ -17,10 +17,16 @@
 	      console.log(error);
 	  	});
 
-	  	function addManga(index) {
-	  		console.log(index);
+	  	$scope.addManga = function(mangaIndex) {
+	  		console.log("hzuifhzufh       : ", mangaIndex);
 	  		$http
-	  		.post('/api/users/' + USER_ID + '/', {manga_id})
+	  		.post("/api/users/" + sessionStorage.userId, { mangaId : mangaIndex})
+	  		.success(function(data) {
+	  			console.log("successssssssssssssssssssssssss : ", data);
+	  		})
+	  		.error(function(error) {
+	  			console.log('ERROR      : ', error);
+	  		})
 	  	}
 		
 })

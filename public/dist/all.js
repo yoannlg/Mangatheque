@@ -51,10 +51,13 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 
 			$http.post('/api/users', auth)
 				.success(function(data) {
-				console.log('Success : ', data)
-				localStorage.setItem('mangaToken', data.token);
+				console.log('Successsssss : ', data.user)
+				// Enregistrer des données dans sessionStorage
+				sessionStorage.setItem('mangaToken', data.token);
+				sessionStorage.setItem('userId', data.user._id);
 	    	$location.path('/home')
-	    	console.log("test : ",localStorage.mangaToken);
+	    	console.log("test : ", sessionStorage.mangaToken);
+	    	console.log("testID : ", sessionStorage.userId);
 	    	})
 				.error(function(error) {
 	        alert('Inscription non effectuée')
@@ -110,10 +113,16 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 	      console.log(error);
 	  	});
 
-	  	function addManga(index) {
-	  		console.log(index);
+	  	$scope.addManga = function(mangaIndex) {
+	  		console.log("hzuifhzufh       : ", mangaIndex);
 	  		$http
-	  		.post('/api/users/' + USER_ID + '/', {manga_id})
+	  		.post("/api/users/" + sessionStorage.userId, { mangaId : mangaIndex})
+	  		.success(function(data) {
+	  			console.log("successssssssssssssssssssssssss : ", data);
+	  		})
+	  		.error(function(error) {
+	  			console.log('ERROR      : ', error);
+	  		})
 	  	}
 		
 })
@@ -138,7 +147,7 @@ angular.module('app.routes', ['ngRoute'])
 			templateUrl:'app/views/home.html',
 			resolve: {
 				function($location) {
-					if(!localStorage.mangaToken) {
+					if(!sessionStorage.mangaToken && !sessionStorage.userID) {
 						alert("vous n'avez pas accès à cette page, connectez-vous");
 						$location.path('/login');
 					}
