@@ -38,8 +38,8 @@
 		<div class="topContainer">
 
 			<div class="containerMangas" ng-repeat="manga in displayManga">
-				<div class="bloc flex-between">
 				<img class="couverture" ng-src="{{manga.imageURL}}"></img>
+				<div class="bloc flex-between">
 					<div class="trash flex-center pointer">
 						<i class="fa fa-trash fa-lg" aria-hidden="true"></i>
 					</div>
@@ -49,7 +49,10 @@
 							<p class="green"></p>
 							<p class="red">{{manga.chapters.len}}</p>
 						</div>
-						<p>auteur : {{manga.author}}</p>
+						<div>
+							<p>auteur : </p>
+							<p>{{manga.author}}</p>
+						</div>
 					</div>
 					<div class="addRemove flex-column-around">
 						<p>

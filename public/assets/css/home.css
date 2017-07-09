@@ -29,12 +29,14 @@
 
 .containerCollection{
 	width: 95%;
+	min-width: 300px;
 	max-height: 85vh;
 	overflow: auto;
 	background-color: rgba(0,0,0,0.5);
 }
 .containerHeader{
 	width: 95%;
+	min-width: 300px;
 	position: fixed;
 	background-color: white;
     border-bottom: 0.1rem solid darkgrey;
@@ -80,7 +82,7 @@ width: 4rem;
 .blocInfo{
 	display: flex;
 	justify-content: space-around;
-	min-width: 13rem;
+	width: 20rem;
 	/*border: 2px solid green;*/
 }
 
@@ -94,8 +96,14 @@ width: 4rem;
 	.bloc{
 		margin-right: 0.5rem;
 	}
+	.blocInfo{
+		width: 8rem;
+	}
 	/*.searchBarForm, input{
 		width: 6rem;
 	}*/
+	.topContainer {
+    padding-top: 1.7rem;
+	}
 
 }
