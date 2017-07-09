@@ -8,11 +8,12 @@
 				</div>
 			</div> -->
 
-			<select name="" id="">
-				<option value="">Titre</option>
-				<option value="">Auteur</option>
-				<option value="">Edition</option>
-			</select>
+			<form>
+					<select ng-model="order">
+					<option value="title">Titre</option>
+					<option value="author">Auteur</option>
+					</select>
+		</form>
 
 			<div>
 				<i class="fa fa-caret-down fa-2x pointer" aria-hidden="true"></i>
@@ -37,7 +38,7 @@
 		</div>
 		<div class="topContainer">
 
-			<div class="containerMangas" ng-repeat="manga in displayManga">
+			<div class="containerMangas" ng-repeat="manga in displayManga | orderBy: order">
 				<img class="couverture" ng-src="{{manga.imageURL}}"></img>
 				<div class="bloc flex-between">
 					<div class="trash flex-center pointer">

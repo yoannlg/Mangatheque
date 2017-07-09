@@ -1,7 +1,8 @@
 .controller('mainController', function($scope, $http) {
 
 	$scope.callApi = {}
-	$scope.displayManga = {};
+	$scope.displayManga = [];
+	$scope.order = "title";
 
 	var getInformation = function(i){
 		$http
@@ -38,6 +39,7 @@
 		for (var i = 0; i < $scope.callApi.length; i++) {
 		  getInformation(i);
 		}
+		console.dir($scope.displayManga);
 	})
 	.error(function(error) {
 		console.log("error :   ",error)
