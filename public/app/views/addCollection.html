@@ -32,20 +32,13 @@
 		<div class="topContainer">
 
 			<div class="containerMangas" ng-repeat="manga in mangaList track by $index">
-				<div class="couverture">couv</div>
+				<!-- <div class="couverture">couv</div> -->
 				<div class="bloc flex-between">
-						<div class="addRemove flex-column-around">
-							<p>
-								<i class="fa fa-plus fa-lg pointer green" aria-hidden="true"></i>
-							</p>
-							<p>
-								<i class="fa fa-minus fa-lg pointer red" aria-hidden="true"></i>
-							</p>
-						</div>
+						
 					<div class="blocInfo flex-column-center">
 						<p>{{manga.t}}</p>
-						<div class="number flex-around">
-							<!-- <p class="green">34</p> -->
+						<div class="flex-around">
+
 							<p class="red">71</p>
 						</div>
 					</div>
@@ -59,7 +52,9 @@
 		</div>
 		<div class="containerFooter flex-around">
 			<div>
-				<i class="fa fa-undo" aria-hidden="true"></i>
+				<a href="/home">
+					<i class="fa fa-undo" aria-hidden="true"></i>
+				</a>
 			</div>
 		</div>
 </div>
