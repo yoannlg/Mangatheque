@@ -203,6 +203,16 @@ p{
 	margin-right: 5px;
 }
 
+/*animate*/
+#order{
+	transition: all 0.6s;
+}
+
+.rotate {
+	transform: rotate( 180deg );            
+	transition: transform 550ms ease;
+}
+
 /*position: absolute;  postulat de départ 
   top: 50%; left: 50%;  à 50%/50% du parent référent 
   transform: translate(-50%, -50%); décalage de 50% de sa propre taille */
