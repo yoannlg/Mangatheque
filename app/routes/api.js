@@ -262,10 +262,30 @@ apiRouter.route('/users/:user_id')
 apiRouter.route('/users/:user_id/chapter')
 	.post(function(req, res){
 		User.findById(req.params.user_id, function(err, user){
-			if (err)
-				res.send(err);
-			user.mangaId.id = req.body.chapter;  // update the mangaList
-			user.save(function(err){
+			var id = req.body.mangaId;
+			console.log(typeof req.body.chapter);
+			console.log("--------- MangaId ---------------")
+			console.log(user.mangaId);
+			console.log("---------------------------------")
+			newmangaId = user.mangaId.map(function(item) {
+				console.log("--------- item ---------------")
+			console.log(item);
+			console.log("---------------------------------")
+				if (item.id === req.body.mangaId) {
+					if (!item.chapter) {
+						item.chapter = 0;
+					}
+					item.chapter = parseInt(item.chapter) + parseInt(req.body.chapter);
+					return item;
+				}
+				else {
+					return item;
+				}
+			});
+			console.log("--------- NEWMangaId ---------------")
+			console.log(newmangaId);
+			console.log("---------------------------------")
+			User.update( { _id: user._id }, {mangaId: newmangaId},function(err){
 			if (err)
 				res.send(err);
 			res.status(200).json({ message: 'mangaList updated!',
@@ -273,11 +293,6 @@ apiRouter.route('/users/:user_id/chapter')
 			});
 		});
 	});
-
-
-
-
-
 
 
 // on routes that end in serie

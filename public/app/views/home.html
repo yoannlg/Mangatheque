@@ -47,7 +47,7 @@
 					<div class="blocInfo flex-column-center">
 						<p>{{manga.title}}</p>
 						<div class="number flex-around">
-							<p class="green">toto</p>
+							<p class="green" ng-repeat="chapter in displayChapterLength">{{chapter.chapter}}</p>
 							<p class="red">{{manga.chapters_len}}</p>
 						</div>
 						<div>
@@ -57,10 +57,10 @@
 					</div>
 					<div class="addRemove flex-column-around">
 						<p>
-							<i class="fa fa-plus green fa-lg pointer" aria-hidden="true"></i>
+							<i class="fa fa-plus green fa-lg pointer" ng-click="addChapter(manga.id)" aria-hidden="true"></i>
 						</p>
 						<p>
-							<i class="fa fa-minus red fa-lg pointer" aria-hidden="true"></i>
+							<i class="fa fa-minus red fa-lg pointer" ng-click="removeChapter(manga.id)" aria-hidden="true"></i>
 						</p>
 					</div>
 				</div>
