@@ -18,11 +18,11 @@
 	  	});
 
 	  	$scope.addManga = function(mangaIndex) {
-	  		console.log("hzuifhzufh       : ", mangaIndex);
+	  		console.log("mangaIndex vaut  : ", mangaIndex);
 	  		$http
 	  		.post("/api/users/" + sessionStorage.userId, { mangaId : mangaIndex})
 	  		.success(function(data) {
-	  			console.log("successssssssssssssssssssssssss : ", data);
+	  			console.log("succes : ", data);
 	  		})
 	  		.error(function(error) {
 	  			console.log('ERROR      : ', error);

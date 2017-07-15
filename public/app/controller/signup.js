@@ -27,7 +27,7 @@
 			$http.post('/api/users', auth)
 				.success(function(data) {
 				console.log('Successsssss : ', data.user)
-				// Enregistrer des données dans sessionStorage
+				//save the datas in sessionStorage
 				sessionStorage.setItem('mangaToken', data.token);
 				sessionStorage.setItem('userId', data.user._id);
 	    	$location.path('/home')
