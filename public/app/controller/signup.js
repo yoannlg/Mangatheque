@@ -30,7 +30,7 @@
 				//save the datas in sessionStorage
 				sessionStorage.setItem('mangaToken', data.token);
 				sessionStorage.setItem('userId', data.user._id);
-	    	$location.path('/home')
+	    	$location.path('/home/add-collection')
 	    	console.log("test : ", sessionStorage.mangaToken);
 	    	console.log("testID : ", sessionStorage.userId);
 	    	})

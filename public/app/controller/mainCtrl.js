@@ -1,4 +1,4 @@
-.controller('mainController', function($scope, $http) {
+.controller('mainController', function($scope, $http, $location) {
 
 	$scope.callApi = {}
 	$scope.displayManga = [];
@@ -15,6 +15,15 @@
 	  .error(function(data){
 	  	console.log('Fail call mangaEdenApi');
 	  })
+	}
+
+	$scope.disconnect = function() {
+		sessionStorage.mangaToken = undefined;
+		sessionStorage.userId = undefined;
+		console.log(sessionStorage.mangaToken);
+		console.log(sessionStorage.userId);
+		$location.path('/login');
+		console.log("disconnected");
 	}
 
 	$scope.addChapter = function(mangaId) {

@@ -20,6 +20,19 @@ angular.module('app.routes', ['ngRoute'])
 			controller: 'mainController',
 			resolve: {
 				function($location) {
+					if (!sessionStorage.mangaToken && !sessionStorage.userID && !sessionStorage.mangaList) {
+						alert('Veuillez tout d\'abord ajouter des manga à votre mangathèque');
+						$location.path('/home/add-collection');
+					}
+				}
+			}
+			
+		})
+		.when('/home/add-collection', {
+			templateUrl: 'app/views/addCollection.html',
+			controller: 'addCollectionController',
+			resolve: {
+				function($location) {
 					if(!sessionStorage.mangaToken && !sessionStorage.userID) {
 						alert("vous n'avez pas accès à cette page, connectez-vous");
 						$location.path('/login');
@@ -29,10 +42,6 @@ angular.module('app.routes', ['ngRoute'])
 					}
 				}
 			}
-		})
-		.when('/home/add-collection', {
-			templateUrl: 'app/views/addCollection.html',
-			controller: 'addCollectionController'
 		})
 		.when('/signup', {
 			templateUrl: 'app/views/signup.html',

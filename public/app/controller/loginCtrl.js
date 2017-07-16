@@ -14,14 +14,13 @@
 		$http.post('/api/authenticate', auth)
 			.success(function(data) {
 				console.log('Success : ', data.token)
-				localStorage.setItem('mangaToken', data.token);
-	    	$location.path('/home')
-	    	console.log("test : ",localStorage.mangaToken);
+				sessionStorage.setItem('mangaToken', data.token);
+	    	$location.path('/home/add-collection')
+	    	console.log("test : ",sessionStorage.mangaToken);
 	  	})
 			.error(function(error) {
 	      alert('Inscription non effectuée')
 	      console.log(error)
 	  	});
-
 		}
 })

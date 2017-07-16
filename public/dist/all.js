@@ -52,10 +52,10 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 			$http.post('/api/users', auth)
 				.success(function(data) {
 				console.log('Successsssss : ', data.user)
-				// Enregistrer des données dans sessionStorage
+				//save the datas in sessionStorage
 				sessionStorage.setItem('mangaToken', data.token);
 				sessionStorage.setItem('userId', data.user._id);
-	    	$location.path('/home')
+	    	$location.path('/home/add-collection')
 	    	console.log("test : ", sessionStorage.mangaToken);
 	    	console.log("testID : ", sessionStorage.userId);
 	    	})
@@ -83,21 +83,29 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 		$http.post('/api/authenticate', auth)
 			.success(function(data) {
 				console.log('Success : ', data.token)
-				localStorage.setItem('mangaToken', data.token);
-	    	$location.path('/home')
-	    	console.log("test : ",localStorage.mangaToken);
+				sessionStorage.setItem('mangaToken', data.token);
+	    	$location.path('/home/add-collection')
+	    	console.log("test : ",sessionStorage.mangaToken);
 	  	})
 			.error(function(error) {
 	      alert('Inscription non effectuée')
 	      console.log(error)
 	  	});
-
 		}
 })
 .controller('addCollectionController', function($scope, $http, $q) {
 
 		$scope.mangaList = [];
 		$scope.checkCall = false;
+
+	$scope.disconnect = function() {
+		sessionStorage.mangaToken = undefined;
+		sessionStorage.userId = undefined;
+		console.log(sessionStorage.mangaToken);
+		console.log(sessionStorage.userId);
+		$location.path('/login');
+		console.log("disconnected");
+	}
 
 			$http
 			.get('http://www.mangaeden.com/api/list/0/')
@@ -114,11 +122,12 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 	  	});
 
 	  	$scope.addManga = function(mangaIndex) {
-	  		console.log("hzuifhzufh       : ", mangaIndex);
+	  		console.log("mangaIndex vaut  : ", mangaIndex);
 	  		$http
 	  		.post("/api/users/" + sessionStorage.userId, { mangaId : mangaIndex})
 	  		.success(function(data) {
-	  			console.log("successssssssssssssssssssssssss : ", data);
+	  			console.log("succes : ", data);
+	  			sessionStorage.setItem('mangaList', data);
 	  		})
 	  		.error(function(error) {
 	  			console.log('ERROR      : ', error);
@@ -126,7 +135,7 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 	  	}
 		
 })
-.controller('mainController', function($scope, $http) {
+.controller('mainController', function($scope, $http, $location) {
 
 	$scope.callApi = {}
 	$scope.displayManga = [];
@@ -143,6 +152,15 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 	  .error(function(data){
 	  	console.log('Fail call mangaEdenApi');
 	  })
+	}
+
+	$scope.disconnect = function() {
+		sessionStorage.mangaToken = undefined;
+		sessionStorage.userId = undefined;
+		console.log(sessionStorage.mangaToken);
+		console.log(sessionStorage.userId);
+		$location.path('/login');
+		console.log("disconnected");
 	}
 
 	$scope.addChapter = function(mangaId) {
@@ -209,6 +227,19 @@ angular.module('app.routes', ['ngRoute'])
 			controller: 'mainController',
 			resolve: {
 				function($location) {
+					if (!sessionStorage.mangaToken && !sessionStorage.userID && !sessionStorage.mangaList) {
+						alert('Veuillez tout d\'abord ajouter des manga à votre mangathèque');
+						$location.path('/home/add-collection');
+					}
+				}
+			}
+			
+		})
+		.when('/home/add-collection', {
+			templateUrl: 'app/views/addCollection.html',
+			controller: 'addCollectionController',
+			resolve: {
+				function($location) {
 					if(!sessionStorage.mangaToken && !sessionStorage.userID) {
 						alert("vous n'avez pas accès à cette page, connectez-vous");
 						$location.path('/login');
@@ -218,10 +249,6 @@ angular.module('app.routes', ['ngRoute'])
 					}
 				}
 			}
-		})
-		.when('/home/add-collection', {
-			templateUrl: 'app/views/addCollection.html',
-			controller: 'addCollectionController'
 		})
 		.when('/signup', {
 			templateUrl: 'app/views/signup.html',
