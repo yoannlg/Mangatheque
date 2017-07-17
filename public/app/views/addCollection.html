@@ -33,17 +33,17 @@
 
 			<div class="containerMangas" ng-repeat="manga in mangaList track by $index">
 				<!-- <div class="couverture">couv</div> -->
-				<div class="bloc flex-between">
+				<div class="bloc flex-column-center">
 						
 					<div class="blocInfo flex-column-center">
 						<p>{{manga.t}}</p>
 						<div class="flex-around">
 
-							<p class="red">71</p>
+							<p class="number-spacing red">71</p>
 						</div>
 					</div>
-					<div class="trash flex-center pointer">
-						<button class="fa fa-check-circle fa-lg blue" aria-hidden="true" ng-click="addManga(manga.i)"></button>
+					<div class="flex-center pointer">
+						<button class="btn-add fa fa-check-circle fa-lg blue" aria-hidden="true" ng-click="addManga(manga.i)"></button>
 					</div>
 				</div>
 			</div>

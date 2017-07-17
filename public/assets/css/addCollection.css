@@ -1,9 +1,10 @@
-form input[type = "number"]{
-	width: 40px;
-	margin: 0 20px;
+/*form input[type = "number"]{
+	width: 4rem;
+	margin: 0 2rem;
 	text-align: center;
 	color:green;
-}
-.searchBarForm button{
-	background-color: lightblue;
+}*/
+
+.number-spacing{
+	margin: 0.8rem;
 }

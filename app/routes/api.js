@@ -225,8 +225,8 @@ apiRouter.route('/users/:user_id')
 			if (err)
 				res.send(err);
 		
-			user.name = req.body.name;  // update the bears info
-		// save the bear
+			user.name = req.body.name;  // update the user info
+		// save the user
 			user.save(function(err){
 			if (err)
 				res.send(err);

@@ -197,6 +197,10 @@ p{
     vertical-align: middle;
     text-decoration: none;
 }
+.btn-add{
+	background-color: inherit;
+	border: none;
+}
 /******************/
 
 .icon{
