@@ -2,6 +2,7 @@
 
 		$scope.mangaList = [];
 		$scope.checkCall = false;
+		$scope.query = '';
 
 	$scope.disconnect = function() {
 		sessionStorage.mangaToken = undefined;

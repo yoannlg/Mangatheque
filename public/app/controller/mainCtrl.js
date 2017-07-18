@@ -4,6 +4,7 @@
 	$scope.displayManga = [];
 	$scope.order = "title";
 	$scope.displayChapterLength;
+	$scope.query = '';
 
 	var getInformation = function(i){
 		$http
@@ -18,7 +19,6 @@
 	}
 
 	$scope.disconnect = function() {
-		sessionStorage.mangaToken = undefined;
 		sessionStorage.userId = undefined;
 		console.log(sessionStorage.mangaToken);
 		console.log(sessionStorage.userId);

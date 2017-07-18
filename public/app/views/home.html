@@ -23,7 +23,7 @@
 			</div>
 			<div id="searchBar">
 				<form class="searchBarForm flex-center" action="">
-					<input type="text" placeholder="Votre recherche">
+					<input type="text" placeholder="Votre recherche" ng-model="query">
 					<button type="submit">
 						<i class="fa fa-search" aria-hidden="true"></i>
 					</button>
@@ -32,7 +32,7 @@
 		</div>
 		<div class="topContainer">
 
-			<div class="containerMangas" ng-repeat="manga in displayManga | orderBy: order">
+			<div class="containerMangas" ng-repeat="manga in displayManga | orderBy: order | filter:query">
 				<img class="couverture" ng-src="{{manga.imageURL}}"></img>
 				<div class="bloc flex-between">
 					<div class="trash flex-center pointer">

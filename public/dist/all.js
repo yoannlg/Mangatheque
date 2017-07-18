@@ -97,6 +97,7 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 
 		$scope.mangaList = [];
 		$scope.checkCall = false;
+		$scope.query = '';
 
 	$scope.disconnect = function() {
 		sessionStorage.mangaToken = undefined;
@@ -146,6 +147,7 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 	$scope.displayManga = [];
 	$scope.order = "title";
 	$scope.displayChapterLength;
+	$scope.query = '';
 
 	var getInformation = function(i){
 		$http
@@ -160,7 +162,6 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 	}
 
 	$scope.disconnect = function() {
-		sessionStorage.mangaToken = undefined;
 		sessionStorage.userId = undefined;
 		console.log(sessionStorage.mangaToken);
 		console.log(sessionStorage.userId);
