@@ -121,13 +121,18 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 	      console.log(error);
 	  	});
 
-	  	$scope.addManga = function(mangaIndex) {
+	  	$scope.addManga = function(mangaIndex, item) {
 	  		console.log("mangaIndex vaut  : ", mangaIndex);
 	  		$http
 	  		.post("/api/users/" + sessionStorage.userId, { mangaId : mangaIndex})
 	  		.success(function(data) {
 	  			console.log("succes : ", data);
 	  			sessionStorage.setItem('mangaList', data);
+
+	  			//if success, we need to delete items to avoid same manga in the mangaList
+	  			console.log(item);
+  					$scope.mangaList.splice(item, 1);  
+
 	  		})
 	  		.error(function(error) {
 	  			console.log('ERROR      : ', error);

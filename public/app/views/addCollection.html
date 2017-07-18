@@ -31,7 +31,7 @@
 		<div class="test" ng-if="checkCall">
 		<div class="topContainer">
 
-			<div class="containerMangas" ng-repeat="manga in mangaList track by $index">
+			<div class="containerMangas" ng-repeat="manga in mangaList">
 				<!-- <div class="couverture">couv</div> -->
 				<div class="bloc flex-column-center">
 						
@@ -43,7 +43,7 @@
 						</div>
 					</div>
 					<div class="flex-center pointer">
-						<button class="btn-add fa fa-check-circle fa-lg blue" aria-hidden="true" ng-click="addManga(manga.i)"></button>
+						<button class="btn-add fa fa-check-circle fa-lg blue" aria-hidden="true" ng-click="addManga(manga.i, $index)"></button>
 					</div>
 				</div>
 			</div>
