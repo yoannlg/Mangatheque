@@ -142,10 +142,9 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 
 	var getInformation = function(i){
 		$http
-	  .get("http://www.mangaeden.com/api/manga/" + $scope.callApi[i].id + "/")
+	  .get("http://www.mangaeden.com/api/manga/" + $scope.displayManga[i].id + "/")
 	  .success(function(dataManga) {
-	  	dataManga.id = $scope.callApi[i].id;
-	    $scope.displayManga[i] = dataManga;
+	  	$scope.displayManga[i].details = dataManga;
 	  })
 	  .error(function(data){
 	  	console.log('Fail call mangaEdenApi');
@@ -159,10 +158,8 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 	$http
 	.get("/api/users/" + sessionStorage.userId)
 	.success(function(data) {
-		for (var i = data.length - 1; i >= 0; i--) {
-			$scope.callApi = data;
-		}
-		for (var i = 0; i < $scope.callApi.length; i++) {
+			$scope.displayManga = data;
+		for (var i = 0; i < $scope.displayManga.length; i++) {
 		  getInformation(i);
 		}
 		console.dir($scope.displayManga);
@@ -178,26 +175,26 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 		console.log("disconnected");
 	}
 
-	$scope.addChapter = function(mangaId) {
+	$scope.addChapter = function(index) {
 				$http
 	  		.post("/api/users/" + sessionStorage.userId + "/chapter", {chapter : +1,
-	  																															mangaId: mangaId})
+	  																															mangaId: $scope.displayManga[index].id})
 	  		.success(function(data) {
 	  			console.log("success : ", data);
-	  			$scope.displayChapterLength = data.mangaList;
+	  			$scope.displayManga[index].chapter = data.mangaList[index].chapter;
 	  		})
 	  		.error(function(error) {
 	  			console.log('ERROR      : ', error);
 	  		})
 	}
 
-	$scope.removeChapter = function(mangaId) {
+	$scope.removeChapter = function(index) {
 				$http
 	  		.post("/api/users/" + sessionStorage.userId + "/chapter", {chapter : -1,
-	  																															mangaId: mangaId})
+	  																															mangaId: $scope.displayManga[index].id})
 	  		.success(function(data) {
 	  			console.log("success : ", data);
-	  			$scope.displayChapterLength = data.mangaList;
+	  			$scope.displayManga[index].chapter = data.mangaList[index].chapter;
 	  		})
 	  		.error(function(error) {
 	  			console.log('ERROR      : ', error);

@@ -33,28 +33,28 @@
 		<div class="topContainer">
 
 			<div class="containerMangas" ng-repeat="manga in displayManga | orderBy: order | filter:query">
-				<img class="couverture" ng-src="{{manga.imageURL}}"></img>
+				<img class="couverture" ng-src="{{manga.details.imageURL}}"></img>
 				<div class="bloc flex-between">
 					<div class="trash flex-center pointer">
 						<i class="fa fa-trash fa-lg" aria-hidden="true"></i>
 					</div>
 					<div class="blocInfo flex-column-center">
-						<p>{{manga.title}}</p>
+						<p>{{manga.details.title}}</p>
 						<div class="number flex-around">
-							<p class="green" ng-repeat="chapter in displayChapterLength">{{chapter.chapter}}</p>
-							<p class="red">{{manga.chapters_len}}</p>
+							<p class="green">{{manga.chapter}}</p>
+							<p class="red">{{manga.details.chapters_len}}</p>
 						</div>
 						<div>
 							<p>auteur : </p>
-							<p>{{manga.author}}</p>
+							<p>{{manga.details.author}}</p>
 						</div>
 					</div>
 					<div class="addRemove flex-column-around">
 						<p>
-							<i class="fa fa-plus green fa-lg pointer" ng-click="addChapter(manga.id)" aria-hidden="true"></i>
+							<i class="fa fa-plus green fa-lg pointer" ng-click="addChapter($index)" aria-hidden="true"></i>
 						</p>
 						<p>
-							<i class="fa fa-minus red fa-lg pointer" ng-click="removeChapter(manga.id)" aria-hidden="true"></i>
+							<i class="fa fa-minus red fa-lg pointer" ng-click="removeChapter($index)" aria-hidden="true"></i>
 						</p>
 					</div>
 				</div>
