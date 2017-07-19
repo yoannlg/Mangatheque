@@ -9,11 +9,9 @@ var UserSchema = new Schema({
 	password: {type: String, required: true, select: false},
 	token: {type: String, required: false},
 	mangaId: [{
-								id: {type: String},
-								chapter: {type: String}
-							}]
-							
-	//test : {type: schema.ObjectId, ref:'Serie'}
+							id: {type: String},
+							chapter: {type: String}
+						}]
 });
 
 //hash the password before the user is saved

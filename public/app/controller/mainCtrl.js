@@ -19,9 +19,6 @@
 	}
 
 	$scope.disconnect = function() {
-		sessionStorage.userId = undefined;
-		console.log(sessionStorage.mangaToken);
-		console.log(sessionStorage.userId);
 		$location.path('/login');
 		console.log("disconnected");
 	}

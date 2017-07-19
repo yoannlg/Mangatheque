@@ -84,6 +84,7 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 			.success(function(data) {
 				console.log('Success : ', data.token)
 				sessionStorage.setItem('mangaToken', data.token);
+				sessionStorage.setItem('userId', data.id);
 	    	$location.path('/home/add-collection')
 	    	console.log("test : ",sessionStorage.mangaToken);
 	  	})
@@ -162,9 +163,6 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 	}
 
 	$scope.disconnect = function() {
-		sessionStorage.userId = undefined;
-		console.log(sessionStorage.mangaToken);
-		console.log(sessionStorage.userId);
 		$location.path('/login');
 		console.log("disconnected");
 	}
@@ -233,9 +231,12 @@ angular.module('app.routes', ['ngRoute'])
 			controller: 'mainController',
 			resolve: {
 				function($location) {
-					if (!sessionStorage.mangaToken && !sessionStorage.userID && !sessionStorage.mangaList) {
-						alert('Veuillez tout d\'abord ajouter des manga à votre mangathèque');
-						$location.path('/home/add-collection');
+					if(!sessionStorage.mangaToken && !sessionStorage.userID) {
+						alert("vous n'avez pas accès à cette page, connectez-vous");
+						$location.path('/login');
+					}
+					else {
+						return true;
 					}
 				}
 			}

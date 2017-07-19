@@ -1,6 +1,5 @@
 var bodyParser = require('body-parser');
 var User       = require('../models/user');
-var Serie      = require('../models/series');
 var jwt        = require('jsonwebtoken');
 var config     = require('../../config');
 
@@ -17,18 +16,18 @@ module.exports = function(app, express) {
 	// middleware to use for all requests
 	apiRouter.use(function(req, res, next) {
 	// do logging
-	console.log('Something is happening.');
+	console.log('Entrée');
 	next(); // make sure we go to the next routes and don't stop here
 	});
 
 	apiRouter.get('/', function(req, res){
-		res.json({ message: 'hooray! welcome to our api!' });
+		res.json({ message: 'Bienvenue dans l\'API' });
 	});
 
 apiRouter.route('/authenticate')
 	.post(function(req, res){
 		// find the user
-		console.log("Moi même je vaut : ",req.body.name);
+		console.log("valeur : ",req.body.name);
 	  User.findOne({
 	    name: req.body.name
 	  }).select('name password').exec(function(err, user) {
@@ -46,9 +45,9 @@ apiRouter.route('/authenticate')
 	      // check if password matches
 	      var validPassword = user.comparePassword(req.body.password);
 	      if (!validPassword) {
-	        res.status(403).json({ 
+	        res.status(403).json({
 	        	success: false, 
-	        	message: 'Authentication failed. Wrong password.' 
+	        	message: 'échec d\'authentification' 
 	      	});
 	      } else {
 
@@ -59,8 +58,9 @@ apiRouter.route('/authenticate')
 	        // return the information including token as JSON
 	        res.status(200).json({
 	          success: true,
-	          message: 'Enjoy your token!',
-	          token: token
+	          message: 'token!',
+	          token: token,
+	          id: user._id
 	        });
 	      }   
 
@@ -74,22 +74,20 @@ function generateToken(user) {
 	        	name: user.name,
 	        	username: user.username
 	        }, superSecret, {
-	          expiresIn: '7d' // expires in 24 hours
+	          expiresIn: '7d'
 	        });
 }
 
 
 function authenticate(req, res, next) {
-		// do logging
-		console.log('Somebody just came to our app!');
-
 	  // check header or url parameters or post parameters for token
 	  var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
 	  // decode token
 	  if (token) {
 
-	    // verifies secret and checks exp
+	    // verifies secret
+
 	    jwt.verify(token, superSecret, function(err, decoded) {      
 
 	      if (err) {
@@ -111,70 +109,13 @@ function authenticate(req, res, next) {
 	    // return an HTTP response of 403 (access forbidden) and an error message
    	 	res.status(403).send({ 
    	 		success: false, 
-   	 		message: 'No token provided.' 
+   	 		message: 'Merci de fournir un token.' 
    	 	});
 	    
 	  }
 	}
 
-
-
-// // route middleware to verify a token
-// 	apiRouter.use(function(req, res, next) {
-// 		// do logging
-// 		console.log('Somebody just came to our app!');
-
-// 	  // check header or url parameters or post parameters for token
-// 	  var token = req.body.token || req.query.token || req.headers['x-access-token'];
-
-// 	  // decode token
-// 	  if (token) {
-
-// 	    // verifies secret and checks exp
-// 	    jwt.verify(token, superSecret, function(err, decoded) {      
-
-// 	      if (err) {
-// 	        res.status(403).send({ 
-// 	        	success: false, 
-// 	        	message: 'Failed to authenticate token.' 
-// 	    	});  	   
-// 	      } else { 
-// 	        // if everything is good, save to request for use in other routes
-// 	        req.decoded = decoded;
-	            
-// 	        next(); // make sure we go to the next routes and don't stop here
-// 	      }
-// 	    });
-
-// 	  } else {
-
-// 	    // if there is no token
-// 	    // return an HTTP response of 403 (access forbidden) and an error message
-//    	 	res.status(403).send({ 
-//    	 		success: false, 
-//    	 		message: 'No token provided.' 
-//    	 	});
-	    
-// 	  }
-// 	});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// on routes that end in /users
+	// on routes that end in /users
 // ----------------------------------------------------
 apiRouter.route('/users')
 
@@ -202,6 +143,7 @@ apiRouter.route('/users')
         });
         
     })
+
  // get all the useer (accessed at GET http://localhost:5100/api/users)
     .get(function(req, res) {
         User.find(function(err, users) {
@@ -212,7 +154,8 @@ apiRouter.route('/users')
         });
     });
 
-apiRouter.route('/users/:user_id')
+//Route to access user collection and update his mangaList
+	apiRouter.route('/users/:user_id')
 	.get(function(req,res) {
 		User.findById(req.params.user_id, function(err, user) {
             if (err)
@@ -259,6 +202,7 @@ apiRouter.route('/users/:user_id')
 	});
 
 
+//route to modify chapter value in mangaList
 apiRouter.route('/users/:user_id/chapter')
 	.post(function(req, res){
 		User.findById(req.params.user_id, function(err, user){
@@ -284,43 +228,5 @@ apiRouter.route('/users/:user_id/chapter')
 		});
 	});
 
-
-// on routes that end in serie
-// ----------------------------------------------------
-apiRouter.route('/users/:user_id/series')
-	.post(authenticate, function(req,res){
-		var serie      = new Serie();
-
-		serie._userId  = req.params.user_id;
-		serie.titre    = req.body.titre;
-		serie.nbrTotal = req.body.nbrTotal;
-		//serie.nbrAqui  = req.body.nbrAqui;
-		serie.auteur   = req.body.auteur;
-
-		serie.save(function(err) {
-			if (err) {
-				if (err.code == 11000)
-					return res.json({success: false, message: 'A serie whith same name already exists.'})
-				else
-					return res.send("t'es un putain de boulet mec!!",err);
-			}
-			res.json({message: 'Manga added in your favorite'});
-		});
-	})
-// get all serie (accessed at GET http://localhost:5100/api/users/id/series)
-    .get(function(req, res) {
-        Serie.find({_userId: req.params.user_id},function(err, series) {
-            if (err)
-                res.send(err);
-
-            res.json(series);
-        });
-    });
-
-
 return apiRouter;
 };
-
-
-
-

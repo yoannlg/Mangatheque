@@ -15,6 +15,7 @@
 			.success(function(data) {
 				console.log('Success : ', data.token)
 				sessionStorage.setItem('mangaToken', data.token);
+				sessionStorage.setItem('userId', data.id);
 	    	$location.path('/home/add-collection')
 	    	console.log("test : ",sessionStorage.mangaToken);
 	  	})

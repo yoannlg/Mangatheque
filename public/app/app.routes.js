@@ -20,9 +20,12 @@ angular.module('app.routes', ['ngRoute'])
 			controller: 'mainController',
 			resolve: {
 				function($location) {
-					if (!sessionStorage.mangaToken && !sessionStorage.userID && !sessionStorage.mangaList) {
-						alert('Veuillez tout d\'abord ajouter des manga à votre mangathèque');
-						$location.path('/home/add-collection');
+					if(!sessionStorage.mangaToken && !sessionStorage.userID) {
+						alert("vous n'avez pas accès à cette page, connectez-vous");
+						$location.path('/login');
+					}
+					else {
+						return true;
 					}
 				}
 			}
