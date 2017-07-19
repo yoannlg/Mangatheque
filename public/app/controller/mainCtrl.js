@@ -19,6 +19,7 @@
 	}
 
 	$scope.disconnect = function() {
+		sessionStorage.clear();
 		$location.path('/login');
 		console.log("disconnected");
 	}

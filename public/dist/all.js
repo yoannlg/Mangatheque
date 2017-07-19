@@ -86,13 +86,19 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 				sessionStorage.setItem('mangaToken', data.token);
 				sessionStorage.setItem('userId', data.id);
 	    	$location.path('/home/add-collection')
-	    	console.log("test : ",sessionStorage.mangaToken);
 	  	})
 			.error(function(error) {
-	      alert('Inscription non effectuée')
+	      alert(error.message)
 	      console.log(error)
 	  	});
 		}
+
+		$scope.disconnect = function() {
+			sessionStorage.clear();
+			$location.path('/login');
+			console.log("disconnected");
+		}
+
 })
 .controller('addCollectionController', function($scope, $http, $q) {
 
@@ -140,6 +146,12 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 	  			console.log('ERROR      : ', error);
 	  		})
 	  	}
+
+	  	$scope.disconnect = function() {
+				sessionStorage.clear();
+				$location.path('/login');
+				console.log("disconnected");
+			}
 		
 })
 .controller('mainController', function($scope, $http, $location) {
@@ -163,6 +175,7 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 	}
 
 	$scope.disconnect = function() {
+		sessionStorage.clear();
 		$location.path('/login');
 		console.log("disconnected");
 	}
