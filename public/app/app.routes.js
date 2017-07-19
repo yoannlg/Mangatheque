@@ -51,11 +51,5 @@ angular.module('app.routes', ['ngRoute'])
 			controller: 'signupController'
 			// controllerAs: 'signupCtrl'
 		})
-	
 		.otherwise({redirectTo: '/'})
 });
-
-
-
-//angular.module('app.routes', ['ngRoute' 'restangular'])
-

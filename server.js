@@ -5,12 +5,11 @@ var bodyParser = require('body-parser'); 	// get body-parser
 var morgan     = require('morgan'); 		// used to see requests
 var mongoose   = require('mongoose');
 var config 	   = require('./config');
-var path 	   = require('path');			//permet de se balader sur les route entre les "slashs"
+var path 	   = require('path');			// move between / path
 
 // APP CONFIGURATION ==================
 // ====================================
-// use body parser so we can grab information from POST requests
-//On paramètre notre système de log de requêtes : morgan
+// use body parser so we can catch information from POST requests
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
@@ -43,6 +42,7 @@ app.use('/api', apiRoutes);
 // MAIN CATCHALL ROUTE --------------- 
 // SEND USERS TO FRONTEND ------------
 // has to be registered after API ROUTES
+//don't forget to place it after the api.routes
 app.get('*', function(req, res) {
 	res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
 });

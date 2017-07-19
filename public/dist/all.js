@@ -1,28 +1,16 @@
-//------------------------------------------
-// WARNING:::::::::::::::::::::::::::::::::::
-// COPIER MAIS PAS AJUSTER AU PROJET MANGATHEQUE!!!!!
-//------------------------------------------
-
 angular.module('app', ['ngAnimate', 'app.routes'])
 
 // application configuration to integrate token into requests
 .config(function($httpProvider) {
 
-	// attach our auth interceptor to the http requests
-	//$httpProvider.interceptors.push('AuthInterceptor');
 })
 
 // FORMAT DES FICHIERS CONTROLLERS : 
 
-// .controller('testController', function($scope, $http) {
-// 	$scope.toto = 'le code s\'affiche';
-// })
-
+// POUR YOANN
 // NE PAS OUBLIER DE NE PAS METTRE DE ; A LA FIN DE SON CODE CONTROLLER
 // LE FICHIER NE DOIT CONTENIR QUE LE CONTROLLER
 // NE PAS OUBLIER D\'AJOUTER LA ROUTE DU CONTROLLER DANS LE GULPFILE.JS
-
-//angular.module('mangatheque', ['restangular'])
 .controller('signupController', function($scope, $http, $location) {
 		
 		$scope.nickName;
@@ -51,13 +39,11 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 
 			$http.post('/api/users', auth)
 				.success(function(data) {
-				console.log('Successsssss : ', data.user)
+				console.log('Success : ', data.user)
 				//save the datas in sessionStorage
 				sessionStorage.setItem('mangaToken', data.token);
 				sessionStorage.setItem('userId', data.user._id);
 	    	$location.path('/home/add-collection')
-	    	console.log("test : ", sessionStorage.mangaToken);
-	    	console.log("testID : ", sessionStorage.userId);
 	    	})
 				.error(function(error) {
 	        alert('Inscription non effectuée')
@@ -89,16 +75,8 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 	  	})
 			.error(function(error) {
 	      alert(error.message)
-	      console.log(error)
 	  	});
 		}
-
-		$scope.disconnect = function() {
-			sessionStorage.clear();
-			$location.path('/login');
-			console.log("disconnected");
-		}
-
 })
 .controller('addCollectionController', function($scope, $http, $q) {
 
@@ -174,39 +152,11 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 	  })
 	}
 
-	$scope.disconnect = function() {
-		sessionStorage.clear();
-		$location.path('/login');
-		console.log("disconnected");
-	}
+	// call users to catch mangaId collection, and do loop with getInformation()
+	// to have one get request per manga for the details
+	// and stock this informations in $scope.displayManga array
 
-	$scope.addChapter = function(mangaId) {
-				$http
-	  		.post("/api/users/" + sessionStorage.userId + "/chapter", {chapter : +1,
-	  																															mangaId: mangaId})
-	  		.success(function(data) {
-	  			console.log("succes : ", data);
-	  			$scope.displayChapterLength = data;
-	  		})
-	  		.error(function(error) {
-	  			console.log('ERROR      : ', error);
-	  		})
-	}
-
-	$scope.removeChapter = function(mangaId) {
-				$http
-	  		.post("/api/users/" + sessionStorage.userId + "/chapter", {chapter : -1,
-	  																															mangaId: mangaId})
-	  		.success(function(data) {
-	  			console.log("succes : ", data);
-	  			$scope.displayChapterLength = data;
-	  		})
-	  		.error(function(error) {
-	  			console.log('ERROR      : ', error);
-	  		})
-	}
-
-  $http
+	$http
 	.get("/api/users/" + sessionStorage.userId)
 	.success(function(data) {
 		for (var i = data.length - 1; i >= 0; i--) {
@@ -220,6 +170,39 @@ angular.module('app', ['ngAnimate', 'app.routes'])
 	.error(function(error) {
 		console.log("error :   ",error)
 	})
+
+
+	$scope.disconnect = function() {
+		sessionStorage.clear();
+		$location.path('/login');
+		console.log("disconnected");
+	}
+
+	$scope.addChapter = function(mangaId) {
+				$http
+	  		.post("/api/users/" + sessionStorage.userId + "/chapter", {chapter : +1,
+	  																															mangaId: mangaId})
+	  		.success(function(data) {
+	  			console.log("success : ", data);
+	  			$scope.displayChapterLength = data.mangaList;
+	  		})
+	  		.error(function(error) {
+	  			console.log('ERROR      : ', error);
+	  		})
+	}
+
+	$scope.removeChapter = function(mangaId) {
+				$http
+	  		.post("/api/users/" + sessionStorage.userId + "/chapter", {chapter : -1,
+	  																															mangaId: mangaId})
+	  		.success(function(data) {
+	  			console.log("success : ", data);
+	  			$scope.displayChapterLength = data.mangaList;
+	  		})
+	  		.error(function(error) {
+	  			console.log('ERROR      : ', error);
+	  		})
+	}
 
 })
 // ------------------------------------------
@@ -275,14 +258,8 @@ angular.module('app.routes', ['ngRoute'])
 			controller: 'signupController'
 			// controllerAs: 'signupCtrl'
 		})
-	
 		.otherwise({redirectTo: '/'})
 });
-
-
-
-//angular.module('app.routes', ['ngRoute' 'restangular'])
-
 
 window.addEventListener('click', function(e){
 	if (e.target.className === "fa fa-caret-down fa-2x pointer") {

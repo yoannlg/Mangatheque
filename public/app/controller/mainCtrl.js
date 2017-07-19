@@ -18,6 +18,24 @@
 	  })
 	}
 
+	// call users to catch mangaId collection, and do loop with getInformation()
+	// to have one get request per manga for the details
+	// and stock this informations in $scope.displayManga array
+
+	$http
+	.get("/api/users/" + sessionStorage.userId)
+	.success(function(data) {
+			$scope.callApi = data;
+		for (var i = 0; i < $scope.callApi.length; i++) {
+		  getInformation(i);
+		}
+		console.dir($scope.displayManga);
+	})
+	.error(function(error) {
+		console.log("error :   ",error)
+	})
+
+
 	$scope.disconnect = function() {
 		sessionStorage.clear();
 		$location.path('/login');
@@ -29,8 +47,8 @@
 	  		.post("/api/users/" + sessionStorage.userId + "/chapter", {chapter : +1,
 	  																															mangaId: mangaId})
 	  		.success(function(data) {
-	  			console.log("succes : ", data);
-	  			$scope.displayChapterLength = data;
+	  			console.log("success : ", data);
+	  			$scope.displayChapterLength = data.mangaList;
 	  		})
 	  		.error(function(error) {
 	  			console.log('ERROR      : ', error);
@@ -42,27 +60,12 @@
 	  		.post("/api/users/" + sessionStorage.userId + "/chapter", {chapter : -1,
 	  																															mangaId: mangaId})
 	  		.success(function(data) {
-	  			console.log("succes : ", data);
-	  			$scope.displayChapterLength = data;
+	  			console.log("success : ", data);
+	  			$scope.displayChapterLength = data.mangaList;
 	  		})
 	  		.error(function(error) {
 	  			console.log('ERROR      : ', error);
 	  		})
 	}
-
-  $http
-	.get("/api/users/" + sessionStorage.userId)
-	.success(function(data) {
-		for (var i = data.length - 1; i >= 0; i--) {
-			$scope.callApi = data;
-		}
-		for (var i = 0; i < $scope.callApi.length; i++) {
-		  getInformation(i);
-		}
-		console.dir($scope.displayManga);
-	})
-	.error(function(error) {
-		console.log("error :   ",error)
-	})
 
 })

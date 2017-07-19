@@ -20,14 +20,6 @@
 	  	})
 			.error(function(error) {
 	      alert(error.message)
-	      console.log(error)
 	  	});
 		}
-
-		$scope.disconnect = function() {
-			sessionStorage.clear();
-			$location.path('/login');
-			console.log("disconnected");
-		}
-
 })

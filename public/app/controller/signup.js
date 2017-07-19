@@ -26,13 +26,11 @@
 
 			$http.post('/api/users', auth)
 				.success(function(data) {
-				console.log('Successsssss : ', data.user)
+				console.log('Success : ', data.user)
 				//save the datas in sessionStorage
 				sessionStorage.setItem('mangaToken', data.token);
 				sessionStorage.setItem('userId', data.user._id);
 	    	$location.path('/home/add-collection')
-	    	console.log("test : ", sessionStorage.mangaToken);
-	    	console.log("testID : ", sessionStorage.userId);
 	    	})
 				.error(function(error) {
 	        alert('Inscription non effectuée')
